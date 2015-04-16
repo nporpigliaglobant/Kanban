@@ -1,13 +1,13 @@
 //
-//  Login.m
+//  AddProjectViewController.h
 //  Kanban
 //
 //  Created by Marcelo Dessal on 4/16/15.
 //  Copyright (c) 2015 Globant. All rights reserved.
 //
 
-#import "Login.h"
+#import <UIKit/UIKit.h>
 
-@implementation Login
+@interface AddProjectViewController : UIViewController
 
 @end

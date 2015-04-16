@@ -1,5 +1,5 @@
 //
-//  Login.h
+//  MyProjectsViewController.h
 //  Kanban
 //
 //  Created by Marcelo Dessal on 4/16/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Login : UIViewController
+@interface MyProjectsViewController : UIViewController <UITableViewDataSource, UITabBarDelegate>
 
 @end
