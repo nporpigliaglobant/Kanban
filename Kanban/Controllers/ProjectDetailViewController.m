@@ -21,6 +21,7 @@
     // Do any additional setup after loading the view.
     
     self.title = self.project.name;
+    self.labelState.text = [taskStates objectAtIndex:self.pageIndex];
     
 }
 
@@ -32,14 +33,15 @@
 #pragma mark - Table View Data Source
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return [self.tasks count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Task %lu", indexPath.row];
+    Task* task = [self.tasks objectAtIndex:indexPath.row];
+    cell.textLabel.text = task.name;
     
     return cell;
 }

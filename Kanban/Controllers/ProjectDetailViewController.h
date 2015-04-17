@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Project.h"
+#import "Task.h"
+#import "Constants.h"
 
 @interface ProjectDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) Project *project;
-
+@property NSUInteger pageIndex;
+@property NSArray* tasks;
+@property (strong, nonatomic) IBOutlet UILabel *labelState;
 @end

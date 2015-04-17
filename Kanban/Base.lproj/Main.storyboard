@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kof-hZ-CkI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kof-hZ-CkI">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4g-e9-zh2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="377" y="349"/>
+            <point key="canvasLocation" x="-343" y="349"/>
         </scene>
         <!--My Projects-->
         <scene sceneID="gvg-oM-E8H">
@@ -44,7 +44,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="m2D-kq-531" kind="show" identifier="projectDetail" id="5IS-a2-xR3"/>
+                                            <segue destination="25S-QU-ubf" kind="show" identifier="projectDetail" id="JDd-Jo-dph"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -77,12 +77,38 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gvQ-wq-fgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1110" y="349"/>
+            <point key="canvasLocation" x="402" y="349"/>
+        </scene>
+        <!--Project Page View Controller-->
+        <scene sceneID="7Ny-MA-6DD">
+            <objects>
+                <viewController storyboardIdentifier="ProjectPageViewController" id="25S-QU-ubf" customClass="ProjectPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yZr-BH-JwF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ddt-eP-HUv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ju8-Zj-k6F">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v2i-lU-Dzs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1537" y="349"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="xc7-Nj-gTf">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="s12-tQ-ygg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ruv-Yj-rFc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1537" y="1081"/>
         </scene>
         <!--Project Detail-->
         <scene sceneID="mpz-ns-vWl">
             <objects>
-                <viewController id="m2D-kq-531" customClass="ProjectDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProjectDetailViewController" id="m2D-kq-531" customClass="ProjectDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zgp-hI-duy"/>
                         <viewControllerLayoutGuide type="bottom" id="sTc-GV-xcg"/>
@@ -149,12 +175,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Project Detail" id="Asi-r5-KaZ"/>
                     <connections>
+                        <outlet property="labelState" destination="VGD-ko-F2l" id="aAs-fM-OTN"/>
                         <outlet property="tableView" destination="ffK-Mz-TY4" id="AZ2-uI-Mmk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUC-vJ-E9A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1975" y="349"/>
+            <point key="canvasLocation" x="2275" y="349"/>
         </scene>
         <!--Add Task-->
         <scene sceneID="ZcN-uB-Xg0">
@@ -184,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCp-q1-shn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2679" y="1081"/>
+            <point key="canvasLocation" x="3187" y="1081"/>
         </scene>
         <!--Task Detail-->
         <scene sceneID="wdH-J3-e9n">
@@ -198,7 +225,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEu-K3-BjX">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qEu-K3-BjX">
                                 <rect key="frame" x="16" y="72" width="568" height="476"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -218,7 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ytY-Ey-27N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2679" y="349"/>
+            <point key="canvasLocation" x="3175" y="349"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JPU-Sd-9G1">
@@ -334,7 +361,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xih-JZ-ZF5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1975" y="1081"/>
+            <point key="canvasLocation" x="2275" y="1081"/>
         </scene>
     </scenes>
 </document>

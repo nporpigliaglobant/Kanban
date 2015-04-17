@@ -14,5 +14,6 @@
 @dynamic name;
 @dynamic taskDescription;
 @dynamic project;
+@dynamic state;
 
 @end

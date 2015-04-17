@@ -10,6 +10,7 @@
 
 #define PARSE_APP_ID        @"2LDJ8L7aB9iO9QTGyG4UxGjUSFxxTCUFxM05nOJx"
 #define PARSE_CLIENT_ID     @"3ChxbtSTeoblQgtu5bNZCw1v6L158u2eGsiYuvrs"
+#define taskStates          @[@"Backlog",@"Requirements",@"Implemented",@"Tested",@"Production"]
 
 @interface Constants : NSObject
 
