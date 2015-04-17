@@ -16,6 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.states = taskStates;
+
     // Do any additional setup after loading the view.
     
 //    Task* task1 = [[Task alloc] init];
@@ -55,7 +58,6 @@
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     
-    self.states = taskStates;
     
 }
 
