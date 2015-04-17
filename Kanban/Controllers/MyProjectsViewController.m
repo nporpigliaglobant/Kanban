@@ -7,7 +7,7 @@
 //
 
 #import "MyProjectsViewController.h"
-#import "ProjectDetailViewController.h"
+#import "ProjectPageViewController.h"
 #import "AppDelegate.h"
 
 @interface MyProjectsViewController ()
@@ -86,13 +86,8 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    if ([segue.identifier isEqualToString:@"addProject"]) {
-        
-        // TODO
-        
-    } else if ([segue.identifier isEqualToString:@"projectDetail"]) {
-        
-        ProjectDetailViewController *controller = [segue destinationViewController];
+    if ([segue.identifier isEqualToString:@"projectDetail"]) {
+        ProjectPageViewController *controller = [segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         controller.project = [self.projects objectAtIndex:indexPath.row];
     }

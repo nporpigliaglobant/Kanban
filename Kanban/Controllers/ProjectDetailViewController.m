@@ -7,6 +7,7 @@
 //
 
 #import "ProjectDetailViewController.h"
+#import "AppDelegate.h"
 
 @interface ProjectDetailViewController ()
 

@@ -18,34 +18,34 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    Task* task1 = [[Task alloc] init];
-    [task1 setState:[NSNumber numberWithInt:TaskStateBacklog]];
-    [task1 setName:@"Task 1"];
-    [task1 setTaskDescription:@"Description of Task 1"];
+//    Task* task1 = [[Task alloc] init];
+//    [task1 setState:[NSNumber numberWithInt:TaskStateBacklog]];
+//    [task1 setName:@"Task 1"];
+//    [task1 setTaskDescription:@"Description of Task 1"];
+//    
+//    Task* task2 = [[Task alloc] init];
+//    [task2 setState:[NSNumber numberWithInt:TaskStateRequirements]];
+//    [task2 setName:@"Task 2"];
+//    [task2 setTaskDescription:@"Description of Task 2"];
+//    
+//    Task* task3 = [[Task alloc] init];
+//    [task1 setState:[NSNumber numberWithInt:TaskStateImplemented]];
+//    [task1 setName:@"Task 3"];
+//    [task1 setTaskDescription:@"Description of Task 3"];
+//    
+//    Task* task4 = [[Task alloc] init];
+//    [task1 setState:[NSNumber numberWithInt:TaskStateTested]];
+//    [task1 setName:@"Task 4"];
+//    [task1 setTaskDescription:@"Description of Task 4"];
+//    
+//    Task* task5 = [[Task alloc] init];
+//    [task1 setState:[NSNumber numberWithInt:TaskStateProduction]];
+//    [task1 setName:@"Task 5"];
+//    [task1 setTaskDescription:@"Description of Task 5"];
+//    
+//    self.tasks = @[task1,task2,task3,task4,task5];
     
-    Task* task2 = [[Task alloc] init];
-    [task2 setState:[NSNumber numberWithInt:TaskStateRequirements]];
-    [task2 setName:@"Task 2"];
-    [task2 setTaskDescription:@"Description of Task 2"];
-    
-    Task* task3 = [[Task alloc] init];
-    [task1 setState:[NSNumber numberWithInt:TaskStateImplemented]];
-    [task1 setName:@"Task 3"];
-    [task1 setTaskDescription:@"Description of Task 3"];
-    
-    Task* task4 = [[Task alloc] init];
-    [task1 setState:[NSNumber numberWithInt:TaskStateTested]];
-    [task1 setName:@"Task 4"];
-    [task1 setTaskDescription:@"Description of Task 4"];
-    
-    Task* task5 = [[Task alloc] init];
-    [task1 setState:[NSNumber numberWithInt:TaskStateProduction]];
-    [task1 setName:@"Task 5"];
-    [task1 setTaskDescription:@"Description of Task 5"];
-    
-    self.tasks = @[task1,task2,task3,task4,task5];
-    
-    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProjectPageViewController"];
+    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
     ProjectDetailViewController* startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
@@ -63,6 +63,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Page View Controller Data Source
 
 -(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {

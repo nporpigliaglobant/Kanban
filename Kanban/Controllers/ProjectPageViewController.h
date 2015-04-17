@@ -13,6 +13,8 @@
 
 @interface ProjectPageViewController : UIViewController<UIPageViewControllerDataSource>
 
+@property (strong, nonatomic) Project *project;
+
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) NSArray* tasks;
 @property (strong, nonatomic) NSArray* states;
