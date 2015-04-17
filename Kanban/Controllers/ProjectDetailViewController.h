@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Project.h"
 
 @interface ProjectDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSString *project; // This should be TBD Project class
+@property (strong, nonatomic) Project *project;
 
 @end

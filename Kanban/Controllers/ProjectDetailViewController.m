@@ -10,11 +10,7 @@
 
 @interface ProjectDetailViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *backlogTableView;
-@property (weak, nonatomic) IBOutlet UITableView *requirementsTableView;
-@property (weak, nonatomic) IBOutlet UITableView *implementedTableView;
-@property (weak, nonatomic) IBOutlet UITableView *testedTableView;
-@property (weak, nonatomic) IBOutlet UITableView *productionTableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -24,7 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = self.project;
+    self.title = self.project.name;
     
 }
 
@@ -41,9 +37,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"Item %lu", indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Task %lu", indexPath.row];
     
     return cell;
 }

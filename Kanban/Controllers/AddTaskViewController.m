@@ -1,18 +1,18 @@
 //
-//  ItemDetailViewController.m
+//  AddTaskViewController.m
 //  Kanban
 //
 //  Created by Marcelo Dessal on 4/16/15.
 //  Copyright (c) 2015 Globant. All rights reserved.
 //
 
-#import "ItemDetailViewController.h"
+#import "AddTaskViewController.h"
 
-@interface ItemDetailViewController ()
+@interface AddTaskViewController ()
 
 @end
 
-@implementation ItemDetailViewController
+@implementation AddTaskViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +22,17 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - IBActions
+
+- (IBAction)save:(UIBarButtonItem *)sender {
+}
+
+- (IBAction)cancel:(UIBarButtonItem *)sender {
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 /*

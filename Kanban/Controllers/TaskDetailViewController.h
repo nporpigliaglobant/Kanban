@@ -1,5 +1,5 @@
 //
-//  AddItemViewController.h
+//  TaskDetailViewController.h
 //  Kanban
 //
 //  Created by Marcelo Dessal on 4/16/15.
@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Task.h"
 
-@interface AddItemViewController : UIViewController
+@interface TaskDetailViewController : UIViewController
+
+@property (strong, nonatomic) Task *task;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  ItemDetailViewController.h
+//  AddTaskViewController.h
 //  Kanban
 //
 //  Created by Marcelo Dessal on 4/16/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ItemDetailViewController : UIViewController
+@interface AddTaskViewController : UIViewController
 
 @end

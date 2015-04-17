@@ -10,4 +10,6 @@
 
 @interface MyProjectsViewController : UIViewController <UITableViewDataSource, UITabBarDelegate>
 
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 @end
