@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = self.project.name;
+    
     self.states = taskStates;
 
     // Do any additional setup after loading the view.
