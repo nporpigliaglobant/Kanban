@@ -23,7 +23,7 @@
     [super viewDidLoad];
     //Do any additional setup after loading the view.
     
-    [self addTestingProjects];
+    [self getProjects];
 }
 
 - (NSManagedObjectContext*) managedObjectContext {
@@ -36,9 +36,11 @@
 }
 
 
-#pragma mark - Only for testing purposes
+#pragma mark - Private methods
 
-- (void)addTestingProjects {
+- (void)getProjects {
+    
+    //For now this method is for testing purposes. Sooner it will get my projects from the database
     
     NSMutableArray *projectsArray = [[NSMutableArray alloc] init];
     
@@ -78,6 +80,11 @@
     
 }
 
+#pragma mark - Table View Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 #pragma mark - Navigation
 

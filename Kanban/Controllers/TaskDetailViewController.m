@@ -17,6 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.title = self.task.name;
+    
+    self.descriptionText.text = self.task.taskDescription;
 }
 
 - (void)didReceiveMemoryWarning {

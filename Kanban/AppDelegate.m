@@ -25,6 +25,12 @@
     //Note: this is just for testing. We are going to use the REST API for communicating with Parse
     [Parse setApplicationId:PARSE_APP_ID
                   clientKey:PARSE_CLIENT_ID];
+    
+    // Configure appearance for page control indicator
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.backgroundColor = [UIColor whiteColor];
 
     
     return YES;

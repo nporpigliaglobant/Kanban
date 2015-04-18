@@ -8,6 +8,7 @@
 
 #import "ProjectDetailViewController.h"
 #import "AppDelegate.h"
+#import "TaskDetailViewController.h"
 
 @interface ProjectDetailViewController ()
 
@@ -47,14 +48,26 @@
     return cell;
 }
 
-/*
+#pragma mark - Table View Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([[segue identifier] isEqualToString:@"taskDetail"]) {
+        TaskDetailViewController *controller = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        controller.task = [self.tasks objectAtIndex:indexPath.row];
+        
+    }
 }
-*/
+
 
 @end

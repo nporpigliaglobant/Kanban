@@ -7,6 +7,7 @@
 //
 
 #import "ProjectPageViewController.h"
+#import "AppDelegate.h"
 
 @interface ProjectPageViewController ()
 
@@ -17,44 +18,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Do any additional setup after loading the view.
+    
     self.title = self.project.name;
     
     self.states = taskStates;
-
-    // Do any additional setup after loading the view.
     
-//    Task* task1 = [[Task alloc] init];
-//    [task1 setState:[NSNumber numberWithInt:TaskStateBacklog]];
-//    [task1 setName:@"Task 1"];
-//    [task1 setTaskDescription:@"Description of Task 1"];
-//    
-//    Task* task2 = [[Task alloc] init];
-//    [task2 setState:[NSNumber numberWithInt:TaskStateRequirements]];
-//    [task2 setName:@"Task 2"];
-//    [task2 setTaskDescription:@"Description of Task 2"];
-//    
-//    Task* task3 = [[Task alloc] init];
-//    [task1 setState:[NSNumber numberWithInt:TaskStateImplemented]];
-//    [task1 setName:@"Task 3"];
-//    [task1 setTaskDescription:@"Description of Task 3"];
-//    
-//    Task* task4 = [[Task alloc] init];
-//    [task1 setState:[NSNumber numberWithInt:TaskStateTested]];
-//    [task1 setName:@"Task 4"];
-//    [task1 setTaskDescription:@"Description of Task 4"];
-//    
-//    Task* task5 = [[Task alloc] init];
-//    [task1 setState:[NSNumber numberWithInt:TaskStateProduction]];
-//    [task1 setName:@"Task 5"];
-//    [task1 setTaskDescription:@"Description of Task 5"];
-//    
-//    self.tasks = @[task1,task2,task3,task4,task5];
+    [self getTasks];
     
+    // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
     ProjectDetailViewController* startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    // Change the size of page view controller
     self.pageViewController.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
@@ -66,6 +45,46 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSManagedObjectContext*) managedObjectContext {
+    return [(AppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
+}
+
+#pragma mark - Private methods
+
+- (void)getTasks {
+    
+    //For now this method is for testing purposes. Sooner it will get tasks from the database
+    
+    NSMutableArray *tasksArray = [[NSMutableArray alloc] init];
+    
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"tasks" withExtension:@"json"];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+    NSArray *projectList = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    for (NSDictionary* item in projectList) {
+        Task *newTask = [[Task alloc] initWithEntity:[NSEntityDescription entityForName:@"Task"
+                                                                          inManagedObjectContext:self.managedObjectContext]
+                               insertIntoManagedObjectContext:self.managedObjectContext];
+        
+        newTask.name = [item objectForKey:@"name"];
+        newTask.taskDescription = [item objectForKey:@"description"];
+        newTask.state = [item objectForKey:@"state"];
+        
+        Project *project = [[Project alloc]initWithEntity:[NSEntityDescription entityForName:@"Project" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+        
+        project.name = [item objectForKey:@"project"];
+        
+        newTask.project = project;
+        
+        if ([project.name isEqualToString:self.project.name]) {
+            [tasksArray addObject:newTask];
+        }
+        
+    }
+    
+    self.tasks = tasksArray;
 }
 
 #pragma mark - Page View Controller Data Source
@@ -103,6 +122,7 @@
         return nil;
     }
     
+    // Create a new view controller and pass suitable data.
     ProjectDetailViewController *projectDetailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ProjectDetailViewController"];
 
     projectDetailViewController.pageIndex = index;
@@ -141,6 +161,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
 }
 */
 

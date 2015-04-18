@@ -12,5 +12,6 @@
 @interface TaskDetailViewController : UIViewController
 
 @property (strong, nonatomic) Task *task;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionText;
 
 @end

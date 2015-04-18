@@ -16,6 +16,7 @@
 		3AECC19F1AE0288200CF76D4 /* AddProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AECC19E1AE0288200CF76D4 /* AddProjectViewController.m */; };
 		3AECC1A51AE028B700CF76D4 /* MyProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AECC1A41AE028B700CF76D4 /* MyProjectsViewController.m */; };
 		3AECC1AB1AE0291D00CF76D4 /* ProjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AECC1AA1AE0291D00CF76D4 /* ProjectDetailViewController.m */; };
+		3AEF0A8F1AE282BE00EC7AE2 /* tasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AEF0A8E1AE282BE00EC7AE2 /* tasks.json */; };
 		A0B15BC81AE16E73007F5D2D /* ProjectPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B15BC71AE16E73007F5D2D /* ProjectPageViewController.m */; };
 		CCA1A25E1ADEA3D900CC98B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA1A25D1ADEA3D900CC98B5 /* main.m */; };
 		CCA1A2611ADEA3D900CC98B5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA1A2601ADEA3D900CC98B5 /* AppDelegate.m */; };
@@ -68,6 +69,7 @@
 		3AECC1A41AE028B700CF76D4 /* MyProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyProjectsViewController.m; path = Controllers/MyProjectsViewController.m; sourceTree = "<group>"; };
 		3AECC1A91AE0291D00CF76D4 /* ProjectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectDetailViewController.h; path = Controllers/ProjectDetailViewController.h; sourceTree = "<group>"; };
 		3AECC1AA1AE0291D00CF76D4 /* ProjectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectDetailViewController.m; path = Controllers/ProjectDetailViewController.m; sourceTree = "<group>"; };
+		3AEF0A8E1AE282BE00EC7AE2 /* tasks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tasks.json; sourceTree = "<group>"; };
 		A0B15BC61AE16E73007F5D2D /* ProjectPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectPageViewController.h; path = Controllers/ProjectPageViewController.h; sourceTree = "<group>"; };
 		A0B15BC71AE16E73007F5D2D /* ProjectPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectPageViewController.m; path = Controllers/ProjectPageViewController.m; sourceTree = "<group>"; };
 		C8E27ED1C549693279A34999 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -215,9 +217,10 @@
 		CCA1A25B1ADEA3D900CC98B5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3A3F0B351AE15442004A3C25 /* projects.json */,
 				CCA1A25C1ADEA3D900CC98B5 /* Info.plist */,
 				CCA1A25D1ADEA3D900CC98B5 /* main.m */,
+				3A3F0B351AE15442004A3C25 /* projects.json */,
+				3AEF0A8E1AE282BE00EC7AE2 /* tasks.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 			files = (
 				CCA1A26A1ADEA3D900CC98B5 /* Main.storyboard in Resources */,
 				CCA1A26F1ADEA3D900CC98B5 /* LaunchScreen.xib in Resources */,
+				3AEF0A8F1AE282BE00EC7AE2 /* tasks.json in Resources */,
 				CCA1A26C1ADEA3D900CC98B5 /* Images.xcassets in Resources */,
 				3A3F0B361AE15442004A3C25 /* projects.json in Resources */,
 			);
