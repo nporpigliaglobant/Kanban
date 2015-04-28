@@ -12,6 +12,7 @@
 
 #define TABLEVIEW_TASK_CELL @"TaskCell"
 #define SEGUE_TASK_DETAIL @"taskDetail"
+#define SEGUE_EDIT_PROJECT @"editProject"
 
 
 @interface KBNProjectDetailViewController ()
@@ -69,7 +70,10 @@
         KBNTaskDetailViewController *controller = [segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         controller.task = [self.tasks objectAtIndex:indexPath.row];
-        
+    }
+    if ([[segue identifier] isEqualToString:SEGUE_EDIT_PROJECT]) {
+        KBNEditProjectViewController *controller = [segue destinationViewController];
+        controller.project = self.project;
     }
 }
 

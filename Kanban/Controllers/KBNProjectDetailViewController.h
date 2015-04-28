@@ -10,7 +10,7 @@
 #import "KBNProject.h"
 #import "KBNTask.h"
 #import "KBNConstants.h"
-
+#import "KBNEditProjectViewController.h"
 
 @interface KBNProjectDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
