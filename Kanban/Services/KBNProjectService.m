@@ -44,9 +44,16 @@
     }
 }
 
--(void)editProject:(NSString*)name withDescription:(NSString*)newDescription completionBlock:(KBNConnectionSuccesBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
-    
-    
+-(void)editProject: (NSString*)projectID withNewName:(NSString*)newName withDescription:(NSString*)newDescription completionBlock:(KBNConnectionSuccesBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
+    if ([projectID isEqualToString:@""] || [newName isEqualToString:@""] || [newDescription isEqualToString:@""]) {
+        NSString *domain = ERROR_DOMAIN;
+        NSDictionary * info = @{@"NSLocalizedDescriptionKey": EDIT_PROJECT_WITHOUTNAME_ERROR};
+        NSError *errorPtr = [NSError errorWithDomain:domain code:-102
+                                            userInfo:info];
+        onError(errorPtr);
+    }else{
+        [self.dataService editProject:projectID withNewName:newName withNewDesc:newDescription completionBlock:onCompletion errorBlock:onError];
+    }
 }
 
 -(void)removeProject:(NSString*)name completionBlock:(KBNConnectionSuccesBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
@@ -70,7 +77,7 @@
                                                                                     inManagedObjectContext:weakself.managedObjectContext]
                                          insertIntoManagedObjectContext:weakself.managedObjectContext];
             
-            // newProject.projectId = [item objectForKey:PARSE_OBJECTID];
+            newProject.projectId = [item objectForKey:PARSE_OBJECTID];
             newProject.name = [item objectForKey:PARSE_PROJECT_NAME_COLUMN];
             newProject.projectDescription = [item objectForKey:PARSE_PROJECT_DESCRIPTION_COLUMN];
             

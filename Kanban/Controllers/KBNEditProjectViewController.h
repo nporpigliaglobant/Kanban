@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "KBNTaskList.h"
 #import "KBNProject.h"
+#import "KBNProjectService.h"
+#import "KBNAlertUtils.h"
+#import "KBNAppDelegate.h"
 
 @interface KBNEditProjectViewController : UIViewController
 
 @property KBNProject* project;
 @property NSArray* states;
-
+@property NSString* projectId;
 @end

@@ -308,6 +308,7 @@ EFNhdmU
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fMc-Sm-nkL" firstAttribute="height" secondItem="ByT-dm-d21" secondAttribute="height" id="0Oz-ww-Ja5"/>
                             <constraint firstItem="fMc-Sm-nkL" firstAttribute="top" secondItem="DVL-rM-owL" secondAttribute="bottom" constant="15" id="1Bu-GI-KKV"/>
@@ -334,6 +335,9 @@ EFNhdmU
                             <constraint firstItem="Sph-wV-4vS" firstAttribute="leading" secondItem="ByT-dm-d21" secondAttribute="leading" id="tm2-hh-kw1"/>
                             <constraint firstItem="nIn-D0-IVa" firstAttribute="top" secondItem="nfL-dr-y0M" secondAttribute="bottom" constant="53" id="zfI-OG-UD2"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="cG1-Ni-afL" appends="YES" id="JmS-TZ-isM"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="descriptionTextField" destination="ByT-dm-d21" id="BX3-Rl-hoY"/>
@@ -341,6 +345,11 @@ EFNhdmU
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxa-rI-Fnl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="cG1-Ni-afL">
+                    <connections>
+                        <action selector="onTap:" destination="JVo-V9-qTQ" id="0AX-Dd-P01"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3450" y="-357"/>
         </scene>

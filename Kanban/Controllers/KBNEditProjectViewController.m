@@ -21,8 +21,6 @@
 @implementation KBNEditProjectViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //Do any additional setup after loading the view.
-    
     [self loadProjectAttributes];
 }
 
@@ -36,6 +34,7 @@
 - (void)loadProjectAttributes {
     self.nameTextField.text = self.project.name;
     self.descriptionTextField.text = self.project.projectDescription;
+    self.projectId = self.project.projectId;
 }
 
 #pragma mark - Table View Data Source
@@ -52,7 +51,23 @@
     cell.textLabel.textColor = [UIColor whiteColor];
     return cell;
 }
+
+#pragma mark - IBActions
+
+- (IBAction)onTap:(UITapGestureRecognizer *)sender {
+    [self.view endEditing:YES];
+}
+
 - (IBAction)onSavePressed:(id)sender {
+    [KBNAppDelegate activateActivityIndicator:YES];
+    [[KBNProjectService sharedInstance] editProject:self.projectId withNewName:self.nameTextField.text withDescription:self.descriptionTextField.text completionBlock:^{
+        [KBNAppDelegate activateActivityIndicator:NO];
+        [KBNAlertUtils showAlertView:PROJECT_EDIT_SUCCESS andType:SUCCESS_ALERT];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } errorBlock:^(NSError *error) {
+        [KBNAppDelegate activateActivityIndicator:NO];
+        [KBNAlertUtils showAlertView:[error localizedDescription ]andType:ERROR_ALERT ];
+    }];
 }
 
 @end

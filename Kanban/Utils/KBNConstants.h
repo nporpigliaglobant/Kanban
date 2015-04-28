@@ -31,6 +31,7 @@
 
 //Succes messages
 #define PROJECT_CREATION_SUCCESS @"Project created successfully!"
+#define PROJECT_EDIT_SUCCESS @"Project modified successfully!"
 
 //Error messages
 #define ERROR_DOMAIN @"globant.kanban.Kanban.ErrorDomain";
@@ -38,6 +39,7 @@
 #define CREATING_PROJECT_WITHOUTNAME_ERROR @"Project must have a name"
 #define CREATING_PROJECT_OFFLINE_ERROR @"The service is offline."
 #define CREATING_TASK_WITHOUT_NAME_ERROR @"Task must have a name"
+#define EDIT_PROJECT_WITHOUTNAME_ERROR @"Project must have a name"
 
 //URL
 #define PARSE_USERS @"https://api.parse.com/1/users"
