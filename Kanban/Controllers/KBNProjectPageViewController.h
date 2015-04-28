@@ -11,6 +11,7 @@
 #import "KBNProject.h"
 #import "KBNProjectDetailViewController.h"
 #import "KBNConstants.h"
+#import "KBNEditProjectViewController.h"
 
 @interface KBNProjectPageViewController : UIViewController<UIPageViewControllerDataSource>
 

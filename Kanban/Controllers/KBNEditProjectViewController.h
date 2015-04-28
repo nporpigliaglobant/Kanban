@@ -13,5 +13,6 @@
 @interface KBNEditProjectViewController : UIViewController
 
 @property KBNProject* project;
+@property NSArray* states;
 
 @end

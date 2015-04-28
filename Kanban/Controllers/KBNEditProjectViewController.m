@@ -7,12 +7,11 @@
 //
 
 #import "KBNEditProjectViewController.h"
-#define TABLEVIEW_TASKLIST_CELL @"TaskCell"
+#define TABLEVIEW_TASKLIST_CELL @"stateCell"
 
 @interface KBNEditProjectViewController()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *tasklists;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
 
@@ -37,21 +36,20 @@
 - (void)loadProjectAttributes {
     self.nameTextField.text = self.project.name;
     self.descriptionTextField.text = self.project.projectDescription;
-    self.tasklists = self.project.taskLists.array;
 }
 
 #pragma mark - Table View Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tasklists.count;
+    return self.states.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLEVIEW_TASKLIST_CELL forIndexPath:indexPath];
-    KBNTaskList *tasklist = [self.tasklists objectAtIndex:indexPath.row];
-    cell.textLabel.text = tasklist.name;
-    
+    cell.textLabel.text = [self.states objectAtIndex:indexPath.row];
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
+    cell.textLabel.textColor = [UIColor whiteColor];
     return cell;
 }
 - (IBAction)onSavePressed:(id)sender {

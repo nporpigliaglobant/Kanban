@@ -8,7 +8,7 @@
 
 #import "KBNProjectPageViewController.h"
 #import "KBNAppDelegate.h"
-
+#define KBNEDIT_VC @"KBNEditProjectViewController"
 @interface KBNProjectPageViewController ()
 
 @end
@@ -38,8 +38,7 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(setupEdit)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,7 +93,7 @@
     
     // Create a new view controller and pass suitable data.
     KBNProjectDetailViewController *projectDetailViewController = [self.storyboard instantiateViewControllerWithIdentifier:PROJECT_DETAIL_VC];
-
+    
     projectDetailViewController.pageIndex = index;
     
     return projectDetailViewController;
@@ -110,16 +109,23 @@
     return 0;
 }
 
+- (void)setupEdit {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    KBNEditProjectViewController *vc = [storyboard instantiateViewControllerWithIdentifier:KBNEDIT_VC];
+    vc.project = self.project;
+    vc.states = self.states;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ 
+ }
+ */
 
 @end

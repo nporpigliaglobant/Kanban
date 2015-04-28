@@ -79,7 +79,8 @@
     KBNProject *project = [self.projects objectAtIndex:indexPath.row];
     
     cell.textLabel.text = project.name;
-    
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
+    cell.textLabel.textColor = [UIColor whiteColor];
     return cell;
     
 }
