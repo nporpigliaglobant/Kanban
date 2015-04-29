@@ -100,4 +100,16 @@
     
     
 }
+
+-(void) getProjectWithProjectID: (NSString*)projectID successBlock:(KBNConnectionSuccesArrayBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
+    [self.afManager GET: [NSString stringWithFormat:@"%@/%@", PARSE_PROJECTS, projectID]
+             parameters:nil
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSMutableArray *results = [NSMutableArray new];
+                    [results addObject:responseObject];
+                    onCompletion(results);
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    onError(error);
+                }];
+}
 @end

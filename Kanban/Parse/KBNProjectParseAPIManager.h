@@ -18,6 +18,7 @@
 -(KBNProject*) getProjectWithName: (NSString*)name errorBlock:(KBNConnectionErrorBlock)onError;
 - (void)getProjectsOnSuccess:(KBNConnectionSuccesDictionaryBlock) onSuccess errorBlock:(KBNConnectionErrorBlock)onError;
 
+-(void) getProjectWithProjectID: (NSString*)projectID successBlock:(KBNConnectionSuccesArrayBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError;
 
 @property KBNParseRequestOperationManager * afManager;
 
