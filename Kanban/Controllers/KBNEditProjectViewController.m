@@ -47,7 +47,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLEVIEW_TASKLIST_CELL forIndexPath:indexPath];
     cell.textLabel.text = [self.states objectAtIndex:indexPath.row];
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
+    cell.textLabel.font = [UIFont getKBNNavigationBarFont];
     cell.textLabel.textColor = [UIColor whiteColor];
     return cell;
 }

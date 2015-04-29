@@ -12,6 +12,7 @@
 #import "KBNProjectService.h"
 #import "KBNAlertUtils.h"
 #import "KBNAppDelegate.h"
+#import "UIFont+CustomFonts.h"
 
 @interface KBNEditProjectViewController : UIViewController
 
