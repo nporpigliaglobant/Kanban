@@ -81,6 +81,18 @@
                 }];
 }
 
+- (void) editProject: (NSString*)projectID withNewName: (NSString*) newName withNewDesc: (NSString*) newDesc withUsers:(NSArray*)newUsers completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
+    NSDictionary *data = @{PARSE_PROJECT_NAME_COLUMN: newName, PARSE_PROJECT_DESCRIPTION_COLUMN: newDesc,PARSE_PROJECT_USER_COLUMN:newUsers};
+    [self.afManager PUT:[NSString stringWithFormat:@"%@/%@", PARSE_PROJECTS, projectID]
+             parameters:data
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    onCompletion();
+                }
+                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    onError(error);
+                }];
+}
+
 -(void) getProjectWithProjectID: (NSString*)projectID successBlock:(KBNConnectionSuccessArrayBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
     [self.afManager GET: [NSString stringWithFormat:@"%@/%@", PARSE_PROJECTS, projectID]
              parameters:nil

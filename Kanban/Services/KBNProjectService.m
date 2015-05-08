@@ -58,6 +58,29 @@
     }
 }
 
+-(void)editProject: (NSString*)projectID withNewName:(NSString*)newName withDescription:(NSString*)newDescription withUsers:(NSArray*)newUsers completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
+    if ([projectID isEqualToString:@""] || [newName isEqualToString:@""] || [newDescription isEqualToString:@""]) {
+        NSString *domain = ERROR_DOMAIN;
+        NSDictionary * info = @{@"NSLocalizedDescriptionKey": EDIT_PROJECT_WITHOUTNAME_ERROR};
+        NSError *errorPtr = [NSError errorWithDomain:domain code:-102
+                                            userInfo:info];
+        onError(errorPtr);
+    }else{
+        [self.dataService editProject:projectID withNewName:newName withNewDesc:newDescription withUsers:newUsers completionBlock:onCompletion errorBlock:onError];
+    }
+}
+
+-(BOOL)project:(KBNProject*)project hasUser:(NSString*)emailAddress{
+    BOOL result = NO;
+    NSArray* users = (NSArray*)project.users;
+    for (NSString* emailAddress in users) {
+        if ([emailAddress isEqualToString:emailAddress]){
+            result = YES;
+            break;
+        }
+    }
+    return result;
+}
 
 -(void)removeProject:(NSString*)name completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
     

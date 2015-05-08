@@ -75,10 +75,27 @@
 #define PARSE_USER_NAME_COLUMN @"username"
 
 
+//Mailgun constants
+#define MAILGUN_URL_SANDBOX @"https://api.mailgun.net/v3/sandbox92aeacae0c604dfe9bdf32b0d17e3cf4.mailgun.org/messages"
+#define MAILGUN_API_KEY_USER @"api"
+#define MAILGUN_API_KEY_PASSWORD @"key-aa16f88cfd7050161fbd5f43ed8a071e"
+#define MAILGUN_FIELD_TO @"to"
+#define MAILGUN_FIELD_FROM @"from"
+#define MAILGUN_FIELD_SUBJECT @"subject"
+#define MAILGUN_FIELD_BODY @"text"
+
+//Email communications
+#define EMAIL_INVITE_SUBJECT @"Invitation to my project"
+#define EMAIL_INVITE_BODY @"I've just invited you to my Simple Kanban project. Sign in to the Kanban App with your email address and check it out!"
 //alert titles
 #define ERROR_ALERT @"ERROR"
 #define WARNING_ALERT @"WARNING"
 #define SUCCESS_ALERT @"SUCCESS"
+
+//Alert messages
+#define ALERT_MESSAGE_EMAIL_FORMAT_NOT_VALID @"The format of the email address entered is not valid"
+#define ALERT_MESSAGE_INVITE_SENT_SUCCESSFULY @"Email sent successfuly!"
+#define ALERT_MESSAGE_INVITE_FAILED @"sorry, the invite could not be sent at this time. Try again later"
 
 #define DEFAULT_TASK_LISTS   @[@"Backlog",@"Requirements",@"Implemented",@"Tested",@"Production"]
 

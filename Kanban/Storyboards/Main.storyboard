@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kof-hZ-CkI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kof-hZ-CkI">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -516,6 +516,25 @@ EFNhdmU
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpn-fh-qum">
+                                <rect key="frame" x="187" y="407" width="226" height="30"/>
+                                <state key="normal" title="Tap here to invite a user">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onInviteUserPressed:" destination="3YN-g9-yLs" eventType="touchUpInside" id="UG2-Qc-V5i"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TwF-UA-fNr">
+                                <rect key="frame" x="150" y="218" width="300" height="181"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Users participating on this project:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6t-Oa-Vh2">
+                                <rect key="frame" x="160" y="189" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -523,12 +542,20 @@ EFNhdmU
                             <constraint firstItem="mMn-ZS-loF" firstAttribute="top" secondItem="QuD-Yc-Foo" secondAttribute="bottom" constant="8" symbolic="YES" id="0gq-mu-XS8"/>
                             <constraint firstItem="2UC-Lc-B7x" firstAttribute="centerX" secondItem="QuD-Yc-Foo" secondAttribute="centerX" id="3Ql-ZM-PP2"/>
                             <constraint firstItem="2UC-Lc-B7x" firstAttribute="trailing" secondItem="4BP-hI-JZB" secondAttribute="trailing" id="5oj-2t-KwX"/>
+                            <constraint firstItem="TwF-UA-fNr" firstAttribute="leading" secondItem="Epk-Gm-AQG" secondAttribute="leadingMargin" constant="8" id="6tx-pB-oIn"/>
+                            <constraint firstAttribute="centerX" secondItem="Lpn-fh-qum" secondAttribute="centerX" id="9wx-tj-oj4"/>
+                            <constraint firstItem="f6t-Oa-Vh2" firstAttribute="top" secondItem="4BP-hI-JZB" secondAttribute="bottom" constant="30" id="CN0-Nl-owK"/>
+                            <constraint firstAttribute="centerX" secondItem="f6t-Oa-Vh2" secondAttribute="centerX" id="COx-ez-BN5"/>
                             <constraint firstItem="kac-9T-gTU" firstAttribute="top" secondItem="QuD-Yc-Foo" secondAttribute="bottom" constant="53" id="CVA-MZ-bJX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TwF-UA-fNr" secondAttribute="trailing" constant="8" id="DAF-qU-VeW"/>
+                            <constraint firstItem="Lpn-fh-qum" firstAttribute="top" secondItem="TwF-UA-fNr" secondAttribute="bottom" constant="8" id="RSt-GX-1lx"/>
                             <constraint firstItem="2UC-Lc-B7x" firstAttribute="leading" secondItem="4BP-hI-JZB" secondAttribute="leading" id="ZF2-QH-Pmd"/>
                             <constraint firstItem="2UC-Lc-B7x" firstAttribute="trailing" secondItem="Epk-Gm-AQG" secondAttribute="trailingMargin" id="b5G-uq-Ujn"/>
                             <constraint firstItem="2UC-Lc-B7x" firstAttribute="leading" secondItem="Epk-Gm-AQG" secondAttribute="leadingMargin" id="fhy-Rr-ff0"/>
                             <constraint firstItem="2UC-Lc-B7x" firstAttribute="top" secondItem="KB0-Bt-Q1O" secondAttribute="bottom" constant="44" id="h3f-SL-noJ"/>
+                            <constraint firstItem="QuD-Yc-Foo" firstAttribute="top" secondItem="Lpn-fh-qum" secondAttribute="bottom" constant="62" id="qAj-kf-hlZ"/>
                             <constraint firstItem="mMn-ZS-loF" firstAttribute="centerX" secondItem="QuD-Yc-Foo" secondAttribute="centerX" id="qoy-wl-sn5"/>
+                            <constraint firstItem="TwF-UA-fNr" firstAttribute="top" secondItem="f6t-Oa-Vh2" secondAttribute="bottom" constant="8" id="ru8-ZD-7F6"/>
                             <constraint firstItem="4BP-hI-JZB" firstAttribute="top" secondItem="2UC-Lc-B7x" secondAttribute="bottom" constant="25" id="xjb-fG-Agn"/>
                         </constraints>
                         <connections>
@@ -547,7 +574,7 @@ EFNhdmU
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3368" y="-407"/>
+            <point key="canvasLocation" x="3188" y="-403"/>
         </scene>
     </scenes>
     <resources>

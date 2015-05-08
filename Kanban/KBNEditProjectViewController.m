@@ -9,6 +9,8 @@
 #import "KBNEditProjectViewController.h"
 #define TABLEVIEW_TASKLIST_CELL @"stateCell"
 
+
+
 @interface KBNEditProjectViewController()
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
@@ -38,6 +40,12 @@
 }
 
 #pragma mark - IBActions
+- (IBAction)onInviteUserPressed:(id)sender {
+    //Show a simple UIAlertView with a text box.
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Invite User" message:@"Enter the email address" delegate:self cancelButtonTitle:@"Invite" otherButtonTitles:nil,nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+}
 
 - (IBAction)onTap:(UITapGestureRecognizer *)sender {
     [self.view endEditing:YES];
@@ -56,4 +64,34 @@
     }];
 }
 
+#pragma mark - UIAlertView delegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString* title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"Invite"]){
+        UITextField * emailTextField = [alertView textFieldAtIndex:0];
+        NSString* emailAddress = emailTextField.text;
+        if ([KBNUserUtils isValidUsername:emailAddress]){
+            [self sendInviteTo:emailAddress];
+        }else{
+            [KBNAlertUtils showAlertView:ALERT_MESSAGE_EMAIL_FORMAT_NOT_VALID andType:ERROR_ALERT];
+        }
+    }
+}
+
+-(void) sendInviteTo:(NSString*)emailAddress{
+    
+
+    [KBNEmailUtils sendEmailTo:emailAddress
+                          from:[KBNUserUtils getUsername]
+                       subject:EMAIL_INVITE_SUBJECT
+                          body:EMAIL_INVITE_BODY
+                     onSuccess:^(){
+                         [KBNAlertUtils showAlertView:ALERT_MESSAGE_INVITE_SENT_SUCCESSFULY andType:SUCCESS_ALERT];
+                         
+                     }
+                       onError:^(NSError* error){
+                           [KBNAlertUtils showAlertView:ALERT_MESSAGE_INVITE_SENT_SUCCESSFULY andType:ERROR_ALERT];
+                       }];
+    
+}
 @end
