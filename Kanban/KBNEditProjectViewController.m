@@ -15,7 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
-
+@property (strong, nonatomic) IBOutlet UITableView *usersTableView;
+@property (strong, nonatomic) NSArray* users;
 @end
 
 
@@ -37,6 +38,7 @@
     self.nameTextField.text = self.project.name;
     self.descriptionTextField.text = self.project.projectDescription;
     self.projectId = self.project.projectId;
+    self.users = self.project.users;
 }
 
 #pragma mark - IBActions
@@ -87,6 +89,10 @@
                           body:EMAIL_INVITE_BODY
                      onSuccess:^(){
                          [KBNAlertUtils showAlertView:ALERT_MESSAGE_INVITE_SENT_SUCCESSFULY andType:SUCCESS_ALERT];
+                         NSMutableArray* tempUsers = [self.users mutableCopy];
+                         [tempUsers addObject:emailAddress];
+                         self.users = [NSArray arrayWithArray:tempUsers];
+                         [self.usersTableView reloadData];
                          
                      }
                        onError:^(NSError* error){
