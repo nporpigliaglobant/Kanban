@@ -40,7 +40,7 @@
         KBNProject *project = [[KBNProject alloc]initWithEntity:[NSEntityDescription entityForName:ENTITY_PROJECT inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
         project.name = name;
         project.projectDescription = projectDescription;
-        project.users = [NSMutableArray new];
+        project.users = [NSArray new];
         [project.users addObject:username];
         [self.dataService createProject:project completionBlock:onCompletion errorBlock:onError ] ;
     }
@@ -58,28 +58,48 @@
     }
 }
 
--(void)editProject: (NSString*)projectID withNewName:(NSString*)newName withDescription:(NSString*)newDescription withUsers:(NSArray*)newUsers completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
-    if ([projectID isEqualToString:@""] || [newName isEqualToString:@""] || [newDescription isEqualToString:@""]) {
-        NSString *domain = ERROR_DOMAIN;
-        NSDictionary * info = @{@"NSLocalizedDescriptionKey": EDIT_PROJECT_WITHOUTNAME_ERROR};
-        NSError *errorPtr = [NSError errorWithDomain:domain code:-102
-                                            userInfo:info];
-        onError(errorPtr);
-    }else{
-        [self.dataService editProject:projectID withNewName:newName withNewDesc:newDescription withUsers:newUsers completionBlock:onCompletion errorBlock:onError];
-    }
-}
 
 -(BOOL)project:(KBNProject*)project hasUser:(NSString*)emailAddress{
     BOOL result = NO;
     NSArray* users = (NSArray*)project.users;
-    for (NSString* emailAddress in users) {
-        if ([emailAddress isEqualToString:emailAddress]){
+    for (NSString* emailAddressInArray in users) {
+        if ([emailAddressInArray isEqualToString:emailAddress]){
             result = YES;
             break;
         }
     }
     return result;
+}
+
+-(void)addUserEmail:(NSString*)emailAddress
+          toProject:(KBNProject*)aProject
+    completionBlock:(KBNConnectionSuccessBlock)onSuccess
+         errorBlock:(KBNConnectionErrorBlock)onError
+{
+    if ([aProject.projectId isEqualToString:@""])
+    {
+        NSString *domain = ERROR_DOMAIN;
+        NSDictionary * info = @{@"NSLocalizedDescriptionKey": EDIT_PROJECT_WITHOUTNAME_ERROR};
+        NSError *errorPtr = [NSError errorWithDomain:domain code:-102
+                                            userInfo:info];
+        onError(errorPtr);
+    }
+    else
+    {
+        if (![self project:aProject hasUser:emailAddress])
+        {
+            //Add the user email at the top
+            NSMutableArray* usersMutableArray = [[NSMutableArray alloc]init];
+            [usersMutableArray addObject:emailAddress];
+            [usersMutableArray addObjectsFromArray:aProject.users];
+            
+            NSArray* newUsersArray = [NSArray arrayWithArray:usersMutableArray];
+            [self.dataService setUsersList:newUsersArray toProjectId:aProject.projectId completionBlock:^(){
+                aProject.users = newUsersArray;
+                onSuccess();
+            } errorBlock:onError];
+        }
+    }
 }
 
 -(void)removeProject:(NSString*)name completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
@@ -107,8 +127,11 @@
             newProject.name = [item objectForKey:PARSE_PROJECT_NAME_COLUMN];
             newProject.projectDescription = [item objectForKey:PARSE_PROJECT_DESCRIPTION_COLUMN];
             newProject.projectId = [item objectForKey:PARSE_OBJECTID];
-            newProject.users = [NSMutableArray new];
-            [newProject.users addObject:[item objectForKey:PARSE_PROJECT_USER_COLUMN]];
+            NSMutableArray* tempUsersList = [[NSMutableArray alloc] init];
+            for (NSString* usersListItem in [item objectForKey:PARSE_PROJECT_USERSLIST_COLUMN]) {
+                [tempUsersList addObject:usersListItem];
+            }
+            newProject.users = [NSArray arrayWithArray:tempUsersList];
             [projectsArray addObject:newProject];
         }
         onCompletion(projectsArray);

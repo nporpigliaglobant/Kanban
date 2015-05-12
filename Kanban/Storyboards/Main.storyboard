@@ -526,11 +526,19 @@ EFNhdmU
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TwF-UA-fNr">
-                                <rect key="frame" x="8" y="218" width="568" height="181"/>
+                                <rect key="frame" x="24" y="218" width="568" height="181"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="usersListCell" id="IGx-2E-BNz">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IGx-2E-BNz" id="zWR-7k-MOR">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="3YN-g9-yLs" id="SsA-IH-p9H"/>
-                                    <outlet property="delegate" destination="3YN-g9-yLs" id="ChG-lB-HeX"/>
+                                    <outlet property="dataSource" destination="3YN-g9-yLs" id="xCP-Zh-ERx"/>
+                                    <outlet property="delegate" destination="3YN-g9-yLs" id="3f3-uf-ykl"/>
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Users participating on this project:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6t-Oa-Vh2">

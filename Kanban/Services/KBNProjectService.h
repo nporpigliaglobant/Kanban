@@ -18,8 +18,6 @@
 
 -(void)editProject: (NSString*)projectID withNewName:(NSString*)newName withDescription:(NSString*)newDescription completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError;
 
--(void)editProject: (NSString*)projectID withNewName:(NSString*)newName withDescription:(NSString*)newDescription withUsers:(NSArray*)newUsers completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError;
-
 -(void)removeProject:(NSString*)name completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError;
 
 -(KBNProject*) getProjectWithName: (NSString*)name errorBlock:(KBNConnectionErrorBlock)onError;
@@ -27,6 +25,8 @@
 -(void)getProjectsForUser: (NSString*) username onSuccessBlock:(KBNConnectionSuccessArrayBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError;
 
 -(BOOL)project:(KBNProject*)project hasUser:(NSString*)emailAddress;
+
+-(void)addUserEmail:(NSString*)emailAddress toProject:(KBNProject*)aProject completionBlock:(KBNConnectionSuccessBlock)onSuccess errorBlock:(KBNConnectionErrorBlock)onError;
 
 @property KBNProjectParseAPIManager* dataService;
 

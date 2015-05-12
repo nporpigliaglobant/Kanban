@@ -63,6 +63,7 @@
 #define PARSE_PROJECT_NAME_COLUMN @"name"
 #define PARSE_PROJECT_DESCRIPTION_COLUMN @"project_description"
 #define PARSE_PROJECT_USER_COLUMN @"userName"
+#define PARSE_PROJECT_USERSLIST_COLUMN @"usersList"
 
 
 #define PARSE_TASK_NAME_COLUMN @"name"
@@ -92,10 +93,6 @@
 #define WARNING_ALERT @"WARNING"
 #define SUCCESS_ALERT @"SUCCESS"
 
-//Alert messages
-#define ALERT_MESSAGE_EMAIL_FORMAT_NOT_VALID @"The format of the email address entered is not valid"
-#define ALERT_MESSAGE_INVITE_SENT_SUCCESSFULY @"Email sent successfuly!"
-#define ALERT_MESSAGE_INVITE_FAILED @"sorry, the invite could not be sent at this time. Try again later"
 
 #define DEFAULT_TASK_LISTS   @[@"Backlog",@"Requirements",@"Implemented",@"Tested",@"Production"]
 

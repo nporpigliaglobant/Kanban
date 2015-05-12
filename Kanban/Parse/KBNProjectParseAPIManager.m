@@ -105,6 +105,25 @@
                 }];
 }
 
+
+-(void)setUsersList:(NSArray*)emailAddresses
+        toProjectId:(NSString*)aProjectId
+    completionBlock:(KBNConnectionSuccessBlock)onSuccess
+         errorBlock:(KBNConnectionErrorBlock)onError
+{
+    NSDictionary *data = @{PARSE_PROJECT_USERSLIST_COLUMN: emailAddresses};
+    [self.afManager PUT:[NSString stringWithFormat:@"%@/%@", PARSE_PROJECTS, aProjectId]
+             parameters:data
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    onSuccess();
+                }
+                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    onError(error);
+                }];
+}
+
+
+
 - (void) removeProject: (NSString *)name completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
     
 }

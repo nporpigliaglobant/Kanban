@@ -16,7 +16,7 @@
 #import "KBNUserUtils.h"
 #import "KBNEmailUtils.h"
 
-@interface KBNEditProjectViewController : UIViewController<UIAlertViewDelegate>
+@interface KBNEditProjectViewController : UIViewController<UIAlertViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property KBNProject* project;
 @property NSString* projectId;
