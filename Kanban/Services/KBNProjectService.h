@@ -26,7 +26,7 @@
 
 -(BOOL)project:(KBNProject*)project hasUser:(NSString*)emailAddress;
 
--(void)addUserEmail:(NSString*)emailAddress toProject:(KBNProject*)aProject completionBlock:(KBNConnectionSuccessBlock)onSuccess errorBlock:(KBNConnectionErrorBlock)onError;
+-(void)addUser:(NSString*)emailAddress toProject:(KBNProject*)aProject completionBlock:(KBNConnectionSuccessBlock)onSuccess errorBlock:(KBNConnectionErrorBlock)onError;
 
 @property KBNProjectParseAPIManager* dataService;
 

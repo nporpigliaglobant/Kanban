@@ -134,9 +134,9 @@
 
 - (void)getProjectsFromUsername:(NSString*) username onSuccessBlock:(KBNConnectionSuccessDictionaryBlock) onSuccess errorBlock:(KBNConnectionErrorBlock)onError{
     
-    NSMutableDictionary *where = [NSMutableDictionary dictionaryWithCapacity:1];
-    [where setObject:username forKey:PARSE_PROJECT_USER_COLUMN];
-    
+    //NSMutableDictionary *where = [NSMutableDictionary dictionaryWithCapacity:1];
+    //[where setObject:username forKey:PARSE_PROJECT_USER_COLUMN];
+    NSDictionary* where = @{PARSE_PROJECT_USERSLIST_COLUMN:username};
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:2];
     [params setObject:@"-createdAt" forKey:@"order"];
     [params setObject:where forKey:@"where"];

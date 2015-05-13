@@ -86,7 +86,7 @@
 -(void) sendInviteTo:(NSString*)emailAddress{
     //Add the user to the project. If the update goes well then send the email with the invite.
     __weak typeof(self) weakSelf = self;
-    [[KBNProjectService sharedInstance] addUserEmail:emailAddress
+    [[KBNProjectService sharedInstance] addUser:emailAddress
                              toProject:self.project
                        completionBlock:^{
                                          [KBNEmailUtils sendEmailTo:emailAddress

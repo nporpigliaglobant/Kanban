@@ -71,7 +71,8 @@
     return result;
 }
 
--(void)addUserEmail:(NSString*)emailAddress
+//Adds a email address to the participants list of a given project.
+-(void)addUser:(NSString*)emailAddress
           toProject:(KBNProject*)aProject
     completionBlock:(KBNConnectionSuccessBlock)onSuccess
          errorBlock:(KBNConnectionErrorBlock)onError
