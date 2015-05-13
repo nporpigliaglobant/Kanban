@@ -40,8 +40,7 @@
         KBNProject *project = [[KBNProject alloc]initWithEntity:[NSEntityDescription entityForName:ENTITY_PROJECT inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
         project.name = name;
         project.projectDescription = projectDescription;
-        project.users = [NSArray new];
-        [project.users addObject:username];
+        project.users = [NSArray arrayWithObject:username];
         [self.dataService createProject:project completionBlock:onCompletion errorBlock:onError ] ;
     }
 }
