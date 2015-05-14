@@ -160,16 +160,4 @@
                  }];
 }
 
--(void) editTask:(NSString *)taskId withNewName:(NSString *)newName andWithNewDescription:(NSString *)newDesc onSuccess:(KBNConnectionSuccessBlock)onSuccess failure:(KBNConnectionErrorBlock)onError{
-    NSDictionary *data = @{PARSE_TASK_NAME_COLUMN: newName, PARSE_TASK_DESCRIPTION_COLUMN: newDesc};
-    [self.afManager PUT:[NSString stringWithFormat:@"%@/%@", PARSE_TASKS, taskId]
-             parameters:data
-                success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    onSuccess();
-                }
-                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    onError(error);
-                }];
-}
-
 @end

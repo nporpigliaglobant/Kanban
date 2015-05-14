@@ -126,7 +126,16 @@
 }
 
 -(void)updateTask:(KBNTask*)task onSuccess:(KBNConnectionSuccessBlock)onSuccess failure:(KBNConnectionErrorBlock)onError{
-    [self.dataService editTask:task.taskId withNewName:task.name andWithNewDescription:task.taskDescription onSuccess:onSuccess failure:onError];
+    
+    if (task.name.length) {
+        [self.dataService updateTasks:@[task] completionBlock:onSuccess errorBlock:onError];
+        
+    } else {
+        NSString *domain = ERROR_DOMAIN;
+        NSDictionary * info = @{@"NSLocalizedDescriptionKey": EDIT_TASK_WITHOUTNAME_ERROR};
+        NSError *errorPtr = [NSError errorWithDomain:domain code:-106 userInfo:info];
+        onError(errorPtr);
+    }
 }
 
 @end

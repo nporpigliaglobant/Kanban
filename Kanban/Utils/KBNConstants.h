@@ -48,6 +48,7 @@
 #define CREATING_TASK_TASKLIST_FULL @"The task list cannot hold any more items"
 #define EDIT_PROJECT_WITHOUTNAME_ERROR @"Project must have a name"
 #define USER_EXISTS_ERROR @"There is already a user created with that username, please try other username."
+#define EDIT_TASK_WITHOUTNAME_ERROR @"Task must have a name"
 
 //URL
 #define PARSE_USERS @"https://api.parse.com/1/users"
