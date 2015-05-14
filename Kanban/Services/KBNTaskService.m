@@ -125,4 +125,8 @@
     [self.dataService getTasksUpdatedForProject:projectId fromDate:lastDate completionBlock:onCompletion errorBlock:onError];
 }
 
+-(void)updateTask:(KBNTask*)task onSuccess:(KBNConnectionSuccessBlock)onSuccess failure:(KBNConnectionErrorBlock)onError{
+    [self.dataService editTask:task.taskId withNewName:task.name andWithNewDescription:task.taskDescription onSuccess:onSuccess failure:onError];
+}
+
 @end

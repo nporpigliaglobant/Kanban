@@ -35,6 +35,7 @@
 //Succes messages
 #define PROJECT_CREATION_SUCCESS @"Project created successfully!"
 #define PROJECT_EDIT_SUCCESS @"Project modified successfully!"
+#define TASK_EDIT_SUCCESS @"Task modified successfully!"
 
 //Error messages
 #define ERROR_DOMAIN @"globant.kanban.Kanban.ErrorDomain";

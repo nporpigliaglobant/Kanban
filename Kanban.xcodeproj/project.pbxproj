@@ -45,6 +45,7 @@
 		3A9509A21AF7C5AD00849FF0 /* KBNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9509A11AF7C5AD00849FF0 /* KBNProject.m */; };
 		3A9509A61AF908CC00849FF0 /* KBNMoveTaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9509A51AF908CC00849FF0 /* KBNMoveTaskTest.m */; };
 		541A5EB61AF144FC00C571CC /* KBNEditProjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 541A5EB51AF144FC00C571CC /* KBNEditProjectTest.m */; };
+		542CE7AE1B04FECD00E6F767 /* KBNEditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 542CE7AD1B04FECD00E6F767 /* KBNEditTaskViewController.m */; };
 		543FFAF71AFBD23C0020AD28 /* KBNInitialSetupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 543FFAF61AFBD23C0020AD28 /* KBNInitialSetupTest.m */; };
 		54505C531AFD3BA3000A30B8 /* KBNUpdateManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54505C521AFD3BA3000A30B8 /* KBNUpdateManagerTest.m */; };
 		846FA57D1AE6F0B900AB91C1 /* libPods-AFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 846FA57C1AE6F0B900AB91C1 /* libPods-AFNetworking.a */; };
@@ -151,6 +152,8 @@
 		3A9509A11AF7C5AD00849FF0 /* KBNProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNProject.m; path = Domain/KBNProject.m; sourceTree = "<group>"; };
 		3A9509A51AF908CC00849FF0 /* KBNMoveTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNMoveTaskTest.m; sourceTree = "<group>"; };
 		541A5EB51AF144FC00C571CC /* KBNEditProjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNEditProjectTest.m; sourceTree = "<group>"; };
+		542CE7AC1B04FECD00E6F767 /* KBNEditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNEditTaskViewController.h; path = Controllers/KBNEditTaskViewController.h; sourceTree = "<group>"; };
+		542CE7AD1B04FECD00E6F767 /* KBNEditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNEditTaskViewController.m; path = Controllers/KBNEditTaskViewController.m; sourceTree = "<group>"; };
 		543FFAF51AFBD23C0020AD28 /* KBNInitialSetupTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBNInitialSetupTest.h; sourceTree = "<group>"; };
 		543FFAF61AFBD23C0020AD28 /* KBNInitialSetupTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNInitialSetupTest.m; sourceTree = "<group>"; };
 		54505C521AFD3BA3000A30B8 /* KBNUpdateManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNUpdateManagerTest.m; sourceTree = "<group>"; };
@@ -300,20 +303,22 @@
 		3A4840261AE5435E00C70739 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3A6B09611B0244E200C75EF3 /* KBNEditProjectViewController.h */,
-				3A6B09621B0244E200C75EF3 /* KBNEditProjectViewController.m */,
-				3A312A9E1AEE8420005837A5 /* KBNSignInViewController.h */,
-				3A312A9F1AEE8420005837A5 /* KBNSignInViewController.m */,
 				3A4840451AE545CA00C70739 /* KBNAddProjectViewController.h */,
 				3A4840461AE545CA00C70739 /* KBNAddProjectViewController.m */,
 				3A4840471AE545CA00C70739 /* KBNAddTaskViewController.h */,
 				3A4840481AE545CA00C70739 /* KBNAddTaskViewController.m */,
+				3A6B09611B0244E200C75EF3 /* KBNEditProjectViewController.h */,
+				3A6B09621B0244E200C75EF3 /* KBNEditProjectViewController.m */,
+				542CE7AC1B04FECD00E6F767 /* KBNEditTaskViewController.h */,
+				542CE7AD1B04FECD00E6F767 /* KBNEditTaskViewController.m */,
 				3A4840491AE545CA00C70739 /* KBNMyProjectsViewController.h */,
 				3A48404A1AE545CA00C70739 /* KBNMyProjectsViewController.m */,
 				3A48404B1AE545CA00C70739 /* KBNProjectDetailViewController.h */,
 				3A48404C1AE545CA00C70739 /* KBNProjectDetailViewController.m */,
 				3A48404D1AE545CA00C70739 /* KBNProjectPageViewController.h */,
 				3A48404E1AE545CA00C70739 /* KBNProjectPageViewController.m */,
+				3A312A9E1AEE8420005837A5 /* KBNSignInViewController.h */,
+				3A312A9F1AEE8420005837A5 /* KBNSignInViewController.m */,
 				3A48404F1AE545CA00C70739 /* KBNTaskDetailViewController.h */,
 				3A4840501AE545CA00C70739 /* KBNTaskDetailViewController.m */,
 			);
@@ -619,6 +624,7 @@
 				032EF2921AF0259400F27846 /* KBNErrorUtils.m in Sources */,
 				E2AC8A341AF902D9008A44B5 /* NSDate+Utils.m in Sources */,
 				18CB2DBD1AEAE40700F5F390 /* (null) in Sources */,
+				542CE7AE1B04FECD00E6F767 /* KBNEditTaskViewController.m in Sources */,
 				3A0CCD2C1AEFC1270039F629 /* KBNTaskListUtils.m in Sources */,
 				E2AC8A371AF90312008A44B5 /* KBNUpdateManager.m in Sources */,
 				3A312AA01AEE8420005837A5 /* KBNSignInViewController.m in Sources */,

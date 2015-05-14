@@ -354,7 +354,14 @@
                             <constraint firstItem="IYh-Q5-STf" firstAttribute="top" secondItem="r49-a8-1Kr" secondAttribute="bottom" constant="26" id="LnP-rH-kma"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Task Detail" id="0We-Sd-5e8"/>
+                    <navigationItem key="navigationItem" title="Task Detail" id="0We-Sd-5e8">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="ckf-O5-vQ0">
+                            <color key="tintColor" red="0.0055736275570000002" green="0.05858226481" blue="0.94117647059999998" alpha="0.55000000000000004" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="q27-H2-z0Y" kind="show" identifier="editTask" id="aov-oB-89V"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="labelTaskDescription" destination="w0h-5E-hTC" id="Lu6-FT-mWl"/>
                         <outlet property="labelTaskName" destination="sbd-Yl-OJ0" id="oOq-Ed-gHA"/>
@@ -363,6 +370,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ytY-Ey-27N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3175" y="349"/>
+        </scene>
+        <!--Edit Task View Controller-->
+        <scene sceneID="mh0-Uu-IOU">
+            <objects>
+                <viewController id="q27-H2-z0Y" customClass="KBNEditTaskViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XP5-mX-keC"/>
+                        <viewControllerLayoutGuide type="bottom" id="mtb-eV-o7c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XCK-GB-YpX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" background="textField" translatesAutoresizingMaskIntoConstraints="NO" id="MyO-aU-cKN">
+                                <rect key="frame" x="16" y="109" width="568" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="icm-z9-eC1"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" textAlignment="center" minimumFontSize="17" background="textField" translatesAutoresizingMaskIntoConstraints="NO" id="Gzq-34-KPb">
+                                <rect key="frame" x="16" y="169" width="568" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="NAJ-HW-k3X"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbx-Ey-Bxk">
+                                <rect key="frame" x="277" y="276" width="46" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="3tI-mB-cHT"/>
+                                    <constraint firstAttribute="width" constant="46" id="C7B-Yr-PpK"/>
+                                    <constraint firstAttribute="height" constant="48" id="bRQ-W9-uX9"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="saveIcon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSavePressed:" destination="q27-H2-z0Y" eventType="touchUpInside" id="pTK-l4-SHn"/>
+                                    <action selector="onSavePressed:" destination="3YN-g9-yLs" eventType="touchUpInside" id="qhl-iZ-9Tu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Gzq-34-KPb" firstAttribute="trailing" secondItem="MyO-aU-cKN" secondAttribute="trailing" id="3sR-O6-3Gb"/>
+                            <constraint firstItem="MyO-aU-cKN" firstAttribute="leading" secondItem="XCK-GB-YpX" secondAttribute="leadingMargin" id="7Tb-aa-knm"/>
+                            <constraint firstItem="gbx-Ey-Bxk" firstAttribute="top" secondItem="Gzq-34-KPb" secondAttribute="bottom" constant="72" id="Eh5-vi-5XE"/>
+                            <constraint firstItem="Gzq-34-KPb" firstAttribute="trailing" secondItem="XCK-GB-YpX" secondAttribute="trailingMargin" id="JwS-Nw-rbj"/>
+                            <constraint firstItem="Gzq-34-KPb" firstAttribute="leading" secondItem="MyO-aU-cKN" secondAttribute="leading" id="XVI-6K-xvn"/>
+                            <constraint firstItem="gbx-Ey-Bxk" firstAttribute="centerY" secondItem="XCK-GB-YpX" secondAttribute="centerY" id="XWg-uz-LKh"/>
+                            <constraint firstItem="gbx-Ey-Bxk" firstAttribute="centerX" secondItem="Gzq-34-KPb" secondAttribute="centerX" id="j2a-vN-ANv"/>
+                            <constraint firstItem="Gzq-34-KPb" firstAttribute="top" secondItem="MyO-aU-cKN" secondAttribute="bottom" constant="25" id="pin-Yv-iLH"/>
+                            <constraint firstItem="MyO-aU-cKN" firstAttribute="top" secondItem="XP5-mX-keC" secondAttribute="bottom" constant="45" id="vLc-xa-EVr"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="fMM-GZ-1u3" appends="YES" id="8Mw-96-nUK"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="Gzq-34-KPb" id="oQC-WU-Noh"/>
+                        <outlet property="nameTextField" destination="MyO-aU-cKN" id="Eea-BF-fMo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Afm-av-yJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="fMM-GZ-1u3">
+                    <connections>
+                        <action selector="onTap:" destination="q27-H2-z0Y" id="ueB-ob-tyP"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="3948" y="312"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JPU-Sd-9G1">

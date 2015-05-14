@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KBNTask.h"
 #import "KBNProject.h"
+#import "KBNEditTaskViewController.h"
 
 @interface KBNTaskDetailViewController : UIViewController
 

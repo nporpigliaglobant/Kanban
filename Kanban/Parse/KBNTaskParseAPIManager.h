@@ -23,4 +23,6 @@
 
 - (void)createTasks:(NSArray*)tasks completionBlock:(KBNConnectionSuccessDictionaryBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError;
 
+-(void)editTask:(NSString*)taskId withNewName:(NSString*) newName andWithNewDescription:(NSString*) newDesc onSuccess:(KBNConnectionSuccessBlock)onSuccess failure:(KBNConnectionErrorBlock)onError;
+
 @end
