@@ -49,6 +49,9 @@
 		54505C531AFD3BA3000A30B8 /* KBNUpdateManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54505C521AFD3BA3000A30B8 /* KBNUpdateManagerTest.m */; };
 		846FA57D1AE6F0B900AB91C1 /* libPods-AFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 846FA57C1AE6F0B900AB91C1 /* libPods-AFNetworking.a */; };
 		A079744C1AF023810030696F /* KBNCreateTaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A079744B1AF023810030696F /* KBNCreateTaskTests.m */; };
+		A07974C11AFD3B1B0030696F /* KBNEmailUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A07974C01AFD3B1B0030696F /* KBNEmailUtils.m */; };
+		A07974C41B013E890030696F /* KBNArrayToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = A07974C31B013E890030696F /* KBNArrayToDataTransformer.m */; };
+		A07974C61B03A60B0030696F /* KBNInviteUserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A07974C51B03A60B0030696F /* KBNInviteUserTest.m */; };
 		A0C8A7001AEED4560069E236 /* KBNTaskListParseAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C8A6FF1AEED4560069E236 /* KBNTaskListParseAPIManager.m */; };
 		A0C8A7031AEED4640069E236 /* KBNTaskListService.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C8A7021AEED4640069E236 /* KBNTaskListService.m */; };
 		CCA1A25E1ADEA3D900CC98B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA1A25D1ADEA3D900CC98B5 /* main.m */; };
@@ -156,6 +159,11 @@
 		54505C521AFD3BA3000A30B8 /* KBNUpdateManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNUpdateManagerTest.m; sourceTree = "<group>"; };
 		846FA57C1AE6F0B900AB91C1 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/../build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		A079744B1AF023810030696F /* KBNCreateTaskTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNCreateTaskTests.m; sourceTree = "<group>"; };
+		A07974BF1AFD3B1B0030696F /* KBNEmailUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNEmailUtils.h; path = Utils/KBNEmailUtils.h; sourceTree = "<group>"; };
+		A07974C01AFD3B1B0030696F /* KBNEmailUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNEmailUtils.m; path = Utils/KBNEmailUtils.m; sourceTree = "<group>"; };
+		A07974C21B013E890030696F /* KBNArrayToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNArrayToDataTransformer.h; path = Utils/KBNArrayToDataTransformer.h; sourceTree = "<group>"; };
+		A07974C31B013E890030696F /* KBNArrayToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNArrayToDataTransformer.m; path = Utils/KBNArrayToDataTransformer.m; sourceTree = "<group>"; };
+		A07974C51B03A60B0030696F /* KBNInviteUserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNInviteUserTest.m; sourceTree = "<group>"; };
 		A0C8A6FE1AEED4560069E236 /* KBNTaskListParseAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNTaskListParseAPIManager.h; path = Parse/KBNTaskListParseAPIManager.h; sourceTree = "<group>"; };
 		A0C8A6FF1AEED4560069E236 /* KBNTaskListParseAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNTaskListParseAPIManager.m; path = Parse/KBNTaskListParseAPIManager.m; sourceTree = "<group>"; };
 		A0C8A7011AEED4640069E236 /* KBNTaskListService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNTaskListService.h; path = Services/KBNTaskListService.h; sourceTree = "<group>"; };
@@ -382,6 +390,9 @@
 				18368D331AF2647F006557C6 /* KBNRemoveTaskTest.m */,
 				54505C521AFD3BA3000A30B8 /* KBNUpdateManagerTest.m */,
 				CCA1A2781ADEA3D900CC98B5 /* Supporting Files */,
+				543FFAF51AFBD23C0020AD28 /* KBNInitialSetupTest.h */,
+				543FFAF61AFBD23C0020AD28 /* KBNInitialSetupTest.m */,
+				A07974C51B03A60B0030696F /* KBNInviteUserTest.m */,
 			);
 			path = KanbanTests;
 			sourceTree = "<group>";
@@ -416,6 +427,10 @@
 				032EF2911AF0259400F27846 /* KBNErrorUtils.m */,
 				187EC9AC1AFD23DB0028E9FE /* KBNUpdateUtils.h */,
 				187EC9AD1AFD23DB0028E9FE /* KBNUpdateUtils.m */,
+				A07974BF1AFD3B1B0030696F /* KBNEmailUtils.h */,
+				A07974C01AFD3B1B0030696F /* KBNEmailUtils.m */,
+				A07974C21B013E890030696F /* KBNArrayToDataTransformer.h */,
+				A07974C31B013E890030696F /* KBNArrayToDataTransformer.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -633,6 +648,7 @@
 				3A312AA81AEE845E005837A5 /* KBNProjectParseAPIManager.m in Sources */,
 				3A0CCD371AEFC1780039F629 /* KBNProjectUtils.m in Sources */,
 				3A9509A21AF7C5AD00849FF0 /* KBNProject.m in Sources */,
+				A07974C11AFD3B1B0030696F /* KBNEmailUtils.m in Sources */,
 				A0C8A7001AEED4560069E236 /* KBNTaskListParseAPIManager.m in Sources */,
 				18D88D3D1AEEA7DA00D9BDE1 /* KBNParseRequestOperationManager.m in Sources */,
 				CCA1A2611ADEA3D900CC98B5 /* KBNAppDelegate.m in Sources */,
@@ -643,6 +659,7 @@
 				3A312AC41AEE8BEF005837A5 /* KBNTask.m in Sources */,
 				A0C8A7031AEED4640069E236 /* KBNTaskListService.m in Sources */,
 				3A0CCD261AEEB7B50039F629 /* KBNTaskService.m in Sources */,
+				A07974C41B013E890030696F /* KBNArrayToDataTransformer.m in Sources */,
 				3A4840561AE545CA00C70739 /* KBNTaskDetailViewController.m in Sources */,
 				3A0CCD391AEFC1780039F629 /* UIFont+CustomFonts.m in Sources */,
 				3A312AC71AEE8BEF005837A5 /* KBNTaskList.m in Sources */,
@@ -665,6 +682,7 @@
 				3A9509A61AF908CC00849FF0 /* KBNMoveTaskTest.m in Sources */,
 				18BE0FAD1AEE755500B2B0C2 /* KBNLoginTest.m in Sources */,
 				543FFAF71AFBD23C0020AD28 /* KBNInitialSetupTest.m in Sources */,
+				A07974C61B03A60B0030696F /* KBNInviteUserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

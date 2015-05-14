@@ -26,6 +26,11 @@
 
 -(void)getProjectsForUser: (NSString*) username updatedAfter:(NSString*) lastUpdate  onSuccessBlock:(KBNConnectionSuccessArrayBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError;
 
+-(BOOL)project:(KBNProject*)project hasUser:(NSString*)emailAddress;
+
+-(void)addUser:(NSString*)emailAddress toProject:(KBNProject*)aProject completionBlock:(KBNConnectionSuccessBlock)onSuccess errorBlock:(KBNConnectionErrorBlock)onError;
+
+
 @property KBNProjectParseAPIManager* dataService;
 
 @end

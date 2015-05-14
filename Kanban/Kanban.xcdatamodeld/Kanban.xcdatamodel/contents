@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="KBNProject" representedClassName="KBNProject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="projectDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="projectId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="users" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="users" optional="YES" attributeType="Transformable" valueTransformerName="KBNArrayToDataTransformer" syncable="YES"/>
         <relationship name="taskLists" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="KBNTaskList" inverseName="project" inverseEntity="KBNTaskList" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="KBNTask" inverseName="project" inverseEntity="KBNTask" syncable="YES"/>
     </entity>
@@ -25,7 +25,7 @@
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="KBNTask" inverseName="taskList" inverseEntity="KBNTask" syncable="YES"/>
     </entity>
     <elements>
-        <element name="KBNProject" positionX="-218" positionY="-378" width="128" height="133"/>
+        <element name="KBNProject" positionX="-218" positionY="-378" width="128" height="135"/>
         <element name="KBNTask" positionX="115" positionY="-130" width="128" height="150"/>
         <element name="KBNTaskList" positionX="-324" positionY="-84" width="128" height="120"/>
     </elements>
