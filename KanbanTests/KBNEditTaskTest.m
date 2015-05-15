@@ -48,7 +48,7 @@
 //
 // 3. Edit the task with a new name. Verify that it is updated.
 
-- (void)testMoveTask {
+- (void)testEditTask {
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"ddMMYYHHmmss"];
