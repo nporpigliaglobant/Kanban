@@ -61,4 +61,12 @@
     
 }
 
++ (KBNTask*)mockTaskForProject:(KBNProject*)project taskList:(KBNTaskList*)taskList {
+    
+    NSArray *tasks = [self mockTasksForProject:project taskList:taskList quantity:1];
+    return tasks[0];
+    
+}
+
+
 @end

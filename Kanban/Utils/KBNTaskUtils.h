@@ -15,4 +15,6 @@
 
 + (NSArray*)mockTasksForProject:(KBNProject*)project taskList:(KBNTaskList*)taskList quantity:(NSUInteger)quantity;
 
++ (KBNTask*)mockTaskForProject:(KBNProject*)project taskList:(KBNTaskList*)taskList;
+
 @end

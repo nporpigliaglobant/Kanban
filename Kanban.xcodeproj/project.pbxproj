@@ -36,6 +36,7 @@
 		3A312AC41AEE8BEF005837A5 /* KBNTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A312AC31AEE8BEF005837A5 /* KBNTask.m */; };
 		3A312AC71AEE8BEF005837A5 /* KBNTaskList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A312AC61AEE8BEF005837A5 /* KBNTaskList.m */; };
 		3A427E651B05291B00348F24 /* KBNEditTaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A427E641B05291B00348F24 /* KBNEditTaskTest.m */; };
+		3A427E691B063AA500348F24 /* KBNCreateTestEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A427E681B063AA500348F24 /* KBNCreateTestEnvironment.m */; };
 		3A4840511AE545CA00C70739 /* KBNAddProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4840461AE545CA00C70739 /* KBNAddProjectViewController.m */; };
 		3A4840521AE545CA00C70739 /* KBNAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4840481AE545CA00C70739 /* KBNAddTaskViewController.m */; };
 		3A4840531AE545CA00C70739 /* KBNMyProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A48404A1AE545CA00C70739 /* KBNMyProjectsViewController.m */; };
@@ -136,6 +137,8 @@
 		3A312AC51AEE8BEF005837A5 /* KBNTaskList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNTaskList.h; path = Domain/KBNTaskList.h; sourceTree = "<group>"; };
 		3A312AC61AEE8BEF005837A5 /* KBNTaskList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNTaskList.m; path = Domain/KBNTaskList.m; sourceTree = "<group>"; };
 		3A427E641B05291B00348F24 /* KBNEditTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNEditTaskTest.m; sourceTree = "<group>"; };
+		3A427E681B063AA500348F24 /* KBNCreateTestEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNCreateTestEnvironment.m; sourceTree = "<group>"; };
+		3A427E6A1B064CC900348F24 /* KBNCreateTestEnvironment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KBNCreateTestEnvironment.h; sourceTree = "<group>"; };
 		3A4840451AE545CA00C70739 /* KBNAddProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNAddProjectViewController.h; path = Controllers/KBNAddProjectViewController.h; sourceTree = "<group>"; };
 		3A4840461AE545CA00C70739 /* KBNAddProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNAddProjectViewController.m; path = Controllers/KBNAddProjectViewController.m; sourceTree = "<group>"; };
 		3A4840471AE545CA00C70739 /* KBNAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNAddTaskViewController.h; path = Controllers/KBNAddTaskViewController.h; sourceTree = "<group>"; };
@@ -389,6 +392,8 @@
 				18368D331AF2647F006557C6 /* KBNRemoveTaskTest.m */,
 				54505C521AFD3BA3000A30B8 /* KBNUpdateManagerTest.m */,
 				3A427E641B05291B00348F24 /* KBNEditTaskTest.m */,
+				3A427E6A1B064CC900348F24 /* KBNCreateTestEnvironment.h */,
+				3A427E681B063AA500348F24 /* KBNCreateTestEnvironment.m */,
 				CCA1A2781ADEA3D900CC98B5 /* Supporting Files */,
 			);
 			path = KanbanTests;
@@ -674,6 +679,7 @@
 				18368D341AF2647F006557C6 /* KBNRemoveTaskTest.m in Sources */,
 				3A9509A61AF908CC00849FF0 /* KBNMoveTaskTest.m in Sources */,
 				18BE0FAD1AEE755500B2B0C2 /* KBNLoginTest.m in Sources */,
+				3A427E691B063AA500348F24 /* KBNCreateTestEnvironment.m in Sources */,
 				543FFAF71AFBD23C0020AD28 /* KBNInitialSetupTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
