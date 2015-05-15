@@ -18,6 +18,6 @@
 
 @property (strong, nonatomic) KBNTask *task;
 
-- (void)testCreateTaskEnvironment;
+- (void)createTaskEnvironment;
 
 @end

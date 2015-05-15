@@ -41,7 +41,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"settings for testRemoveTask "];
     NSDate *currDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"ddMMYYHHmmss"];
+    [dateFormatter setDateFormat:@"ddMMYYHHmmssSSS"];
     NSString *dateString = [dateFormatter stringFromDate:currDate];
     
     //we put the date in the name so we always have different project, tasklist and service

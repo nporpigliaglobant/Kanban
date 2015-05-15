@@ -58,7 +58,7 @@
 - (void)testMoveTask {
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"ddMMYYHHmmss"];
+    [dateFormatter setDateFormat:@"ddMMYYHHmmssSSS"];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     
     // 1. Create 4 tasks, tasks 0, 1, 2 and 3 in backlog (orders 0, 1, 2 and 3 respectively).

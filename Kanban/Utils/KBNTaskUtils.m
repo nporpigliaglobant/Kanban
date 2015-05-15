@@ -40,7 +40,7 @@
 + (NSArray*)mockTasksForProject:(KBNProject*)project taskList:(KBNTaskList*)taskList quantity:(NSUInteger)quantity {
     
     NSMutableArray *tasks = [[NSMutableArray alloc] init];
-    KBNTask *task;
+    KBNTask *task = nil;
     
     for (NSUInteger i = 0; i < quantity; i++) {
         

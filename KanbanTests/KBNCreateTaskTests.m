@@ -37,7 +37,7 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"ddMMYYHHmmss"];
+    [dateFormatter setDateFormat:@"ddMMYYHHmmssSSS"];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     
     self.project = [KBNProjectUtils projectWithParams:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"test_project_%@",dateString] forKey:PARSE_OBJECTID]];
@@ -66,7 +66,7 @@
     
     XCTestExpectation *taskCreatedWithoutNameExpectation = [self expectationWithDescription:TASKS_CREATED_WITHOUT_NAME_EXPECTATION];
     
-    KBNTask *addTask = [[KBNTaskUtils mockTasksForProject:self.project taskList:self.taskList quantity:1] objectAtIndex:0];
+    KBNTask *addTask = [KBNTaskUtils mockTaskForProject:self.project taskList:self.taskList];
     addTask.name = @"";
     
     [self.service createTask:addTask

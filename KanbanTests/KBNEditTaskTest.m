@@ -20,21 +20,20 @@
 
 @interface KBNEditTaskTest : XCTestCase
 
-@property (strong, nonatomic) KBNProject *project;
-@property (strong, nonatomic) KBNTask *task;
-
 @end
 
 @implementation KBNEditTaskTest
+    
+static KBNTask *task = nil;
 
-- (void)setUp {
++ (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
     KBNCreateTestEnvironment *environment = [[KBNCreateTestEnvironment alloc] init];
-    [environment testCreateTaskEnvironment];
-    self.task = environment.task;
-    
+    [environment createTaskEnvironment];
+    task = [environment task];
+
 }
 
 - (void)tearDown {
@@ -55,11 +54,11 @@
     KBNTaskService * service = [[KBNTaskService alloc]init];
     service.dataService =[[KBNTaskParseAPIManager alloc]init];
     
-    self.task.name = @"";
+    task.name = @"";
     
-    [service updateTask:self.task onSuccess:^{
+    [service updateTask:task onSuccess:^{
         // If the task is successfully updated, the test fails
-        XCTAssertTrue(false);
+        XCTFail(@"Task was created without a name");
         [taskEditedWithoutNameExpectation fulfill];
         
     } failure:^(NSError *error) {
@@ -76,32 +75,32 @@
     
     XCTestExpectation *taskEditedExpectation = [self expectationWithDescription:TASK_EDITED_EXPECTATION];
     
-    self.task.name = @"Task edited test";
-    self.task.taskDescription = @"Task edited OK";
+    task.name = @"Task edited test";
+    task.taskDescription = @"Task edited OK";
     
     KBNTaskService * service = [[KBNTaskService alloc]init];
     service.dataService =[[KBNTaskParseAPIManager alloc]init];
     
-    [service updateTask:self.task onSuccess:^{
+    [service updateTask:task onSuccess:^{
         // Retrieve the only task of this project and verify that its name has been updated
-        NSString *projectId = self.task.project.projectId;
+        NSString *projectId = task.project.projectId;
         [service getTasksForProject:projectId completionBlock:^(NSDictionary *records) {
             NSArray *retrievedTasks = [records objectForKey:@"results"];
             NSDictionary *dict = retrievedTasks[0];
             NSString *name = [dict objectForKey:PARSE_TASK_NAME_COLUMN];
             
-            if (![name isEqualToString:self.task.name]) {
-                XCTAssertTrue(false);
+            if (![name isEqualToString:task.name]) {
+                XCTFail(@"Task name '%@' is different from '%@'", name, task.name);
             }
             
             [taskEditedExpectation fulfill];
             
         } errorBlock:^(NSError *error) {
-            XCTAssertTrue(false);
+            XCTFail(@"Task Service could not retrieve tasks for the project");
             [taskEditedExpectation fulfill];
         }];
     } failure:^(NSError *error) {
-        XCTAssertTrue(false);
+        XCTFail(@"Task Service could not update the task");
         [taskEditedExpectation fulfill];
         
     }];

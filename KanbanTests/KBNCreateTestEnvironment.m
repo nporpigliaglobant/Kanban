@@ -26,10 +26,15 @@
     [super tearDown];
 }
 
-- (void)testCreateTaskEnvironment {
+- (void)testExample {
+    // This is an example of a functional test case.
+    XCTAssert(YES, @"Pass");
+}
+
+- (void)createTaskEnvironment {
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"ddMMYYHHmmss"];
+    [dateFormatter setDateFormat:@"ddMMYYHHmmssSSS"];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     
     XCTestExpectation *taskCreatedExpectation = [self expectationWithDescription:TASK_CREATED_EXPECTATION];
@@ -50,12 +55,12 @@
     
     [service createTask:self.task inList:backlog completionBlock:^(NSDictionary *records) {
         __weak typeof(self) weakself = self;
-        [service getTasksForProject:project.projectId completionBlock:^(NSDictionary *records) {
+        [service getTasksForProject:self.task.project.projectId completionBlock:^(NSDictionary *records) {
             NSArray *retrievedTasks = [records objectForKey:@"results"];
             if (!retrievedTasks.count) { // We brought no records => error creating the tasks
-                XCTAssertTrue(false);
+                XCTFail(@"The project has no tasks");
             } else if (retrievedTasks.count > 1){ // if we bring more than one task, that´s an error.
-                XCTAssertTrue(false);
+                XCTFail(@"The project has more than one task");
             } else {
                 //update id in task.
                 NSDictionary *dict = retrievedTasks[0];
@@ -64,12 +69,12 @@
             [taskCreatedExpectation fulfill];
             
         } errorBlock:^(NSError *error) {
-            XCTAssertTrue(false);
+            XCTFail(@"Task Service could not retrieve tasks for the project");
             [taskCreatedExpectation fulfill];
         }];
 
     } errorBlock:^(NSError *error) {
-        XCTAssertTrue(false);
+        XCTFail(@"Task Service could not create the task");
         [taskCreatedExpectation fulfill];
     }];
     

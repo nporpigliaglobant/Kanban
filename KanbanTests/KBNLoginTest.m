@@ -34,7 +34,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"testLogin normal"];
     NSDate *currDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"ddMMYYHHmmss"];
+    [dateFormatter setDateFormat:@"ddMMYYHHmmssSSS"];
     NSString *dateString = [dateFormatter stringFromDate:currDate];
     
     //we put the date in the usernameso we always have diferent users
