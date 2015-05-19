@@ -32,7 +32,6 @@
         onError(errorPtr);
     } else {
         [self.dataService createTaskListWithName:name order:order projectId:projectId completionBlock:onCompletion errorBlock:onError];
-        
     }
 }
 

@@ -92,7 +92,7 @@
                                          [KBNEmailUtils sendEmailTo:emailAddress
                                                  from:[KBNUserUtils getUsername]
                                               subject:EMAIL_INVITE_SUBJECT
-                                                 body:EMAIL_INVITE_BODY
+                                                 body:[NSString stringWithFormat:@"%@ Link: %@/%@",EMAIL_INVITE_BODY,WEBSITE_BASE_URL,self.projectId]
                                             onSuccess:^(){
                                                 //Refresh the table view
                                                 [weakSelf.usersTableView reloadData];

@@ -31,6 +31,8 @@
 #define PROJECT_DETAIL_VC @"KBNProjectDetailViewController"
 #define PAGE_VC @"KBNPageViewController"
 
+//Base URL of the web site - make sure to include the trailing slash:
+#define WEBSITE_BASE_URL @"https://www.simplekanban.com/"
 
 //Succes messages
 #define PROJECT_CREATION_SUCCESS @"Project created successfully!"
