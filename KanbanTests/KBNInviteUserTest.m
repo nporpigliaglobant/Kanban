@@ -57,7 +57,7 @@
            completionBlock:^(){
                             [createProjectExpectation fulfill];}
                 errorBlock:^(NSError *error){
-                    XCTAssertTrue(false);
+                    XCTFail(@"KBNInviteUserTest: invoked the error block of createProject");
                     [createProjectExpectation fulfill];
                 }];
     [self waitForExpectationsWithTimeout:EXPECTATION_TIMEOUT handler:^(NSError* error){}];
@@ -73,17 +73,17 @@
                          }
                      }
                      if (!newProject){
-                         XCTAssertTrue(false);
+                         XCTFail(@"KBNInviteUserTest: The project created could not be retrieved");
                      }
                      [afterCreateProjectExpectation fulfill];
                  }
                      errorBlock:^(NSError* error){
-                         XCTAssertTrue(false);
+                         XCTFail(@"KBNInviteUserTest: Invoked the errorBlock of the getProject");
                          [afterCreateProjectExpectation fulfill];
                      }];
     [self waitForExpectationsWithTimeout:EXPECTATION_TIMEOUT handler:^(NSError* error){}];
     if (!newProject){
-        XCTAssertTrue(false);
+        XCTFail(@"KBNInviteUserTest: The project created could not be retrieved");
     }else{
         //***********************************************************
         //If the prior check went Okay, move on with the next part
@@ -94,7 +94,7 @@
                         [addUserExpectation fulfill];
                         }
               errorBlock:^(NSError* error){
-                        XCTAssertTrue(false);
+                        XCTFail(@"KBNInviteUserTest: Invoked the errorBlock of the addUser method");
                         [addUserExpectation fulfill];
                         }];
         
@@ -109,12 +109,11 @@
         [service getProjectsForUser:invitee
                      onSuccessBlock:^(NSArray* records){
                                         if ([records count] == 0){
-                                            XCTAssertTrue(false);
-                                        }
+                                            XCTFail(@"KBNInviteUserTest: After a getProject call, the invited user is not receiving the project he was invited to");                                        }
                                         [getProjectAfterAddingUserExpectation fulfill];
                                     }
                          errorBlock:^(NSError* error){
-                                        XCTAssertTrue(false);
+                                        XCTFail(@"KBNInviteUserTest: Invoked the errorBlock of the getProjectsForUser method");
                                         [getProjectAfterAddingUserExpectation fulfill];
                                     }];
         [self waitForExpectationsWithTimeout:EXPECTATION_TIMEOUT handler:^(NSError* error){}];

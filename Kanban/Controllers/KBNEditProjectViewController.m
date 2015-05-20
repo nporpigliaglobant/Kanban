@@ -14,12 +14,18 @@
 #define ALERT_MESSAGE_EMAIL_FORMAT_NOT_VALID @"The format of the email address entered is not valid"
 #define ALERT_MESSAGE_INVITE_SENT_SUCCESSFULY @"Email sent successfuly!"
 #define ALERT_MESSAGE_INVITE_FAILED @"Sorry, the invite could not be sent at this time. Try again later"
+#define ALERT_MESSAGE_INVITE_PROMPT_TITLE @"Invite User"
+#define ALERT_MESSAGE_INVITE_PROMPT_MESSAGE @"Enter the email address"
+#define ALERT_MESSAGE_INVITE_PROMPT_CANCELBUTTONTITLE @"Invite"
+
 
 @interface KBNEditProjectViewController()
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
 @property (strong, nonatomic) IBOutlet UITableView *usersTableView;
+@property (strong, nonatomic) IBOutlet UIView *activityIndicatorBackground;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 
@@ -47,7 +53,7 @@
 #pragma mark - IBActions
 - (IBAction)onInviteUserPressed:(id)sender {
     //Show a simple UIAlertView with a text box.
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Invite User" message:@"Enter the email address" delegate:self cancelButtonTitle:@"Invite" otherButtonTitles:nil,nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:ALERT_MESSAGE_INVITE_PROMPT_TITLE message:ALERT_MESSAGE_INVITE_PROMPT_MESSAGE delegate:self cancelButtonTitle:ALERT_MESSAGE_INVITE_PROMPT_CANCELBUTTONTITLE otherButtonTitles:nil,nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert show];
 }
@@ -86,9 +92,11 @@
 -(void) sendInviteTo:(NSString*)emailAddress{
     //Add the user to the project. If the update goes well then send the email with the invite.
     __weak typeof(self) weakSelf = self;
+    [self enableActivityIndicator];
     [[KBNProjectService sharedInstance] addUser:emailAddress
                              toProject:self.project
                        completionBlock:^{
+                           
                                          [KBNEmailUtils sendEmailTo:emailAddress
                                                  from:[KBNUserUtils getUsername]
                                               subject:EMAIL_INVITE_SUBJECT
@@ -97,14 +105,30 @@
                                                 //Refresh the table view
                                                 [weakSelf.usersTableView reloadData];
                                                 //Let the user know everything went OK...
-                                                [KBNAlertUtils showAlertView:ALERT_MESSAGE_INVITE_SENT_SUCCESSFULY andType:SUCCESS_ALERT];                                                
+                                                [KBNAlertUtils showAlertView:ALERT_MESSAGE_INVITE_SENT_SUCCESSFULY andType:SUCCESS_ALERT];
+                                                [weakSelf disableActivityIndicator];
                                             }
                                               onError:^(NSError* error){
+                                                  [weakSelf disableActivityIndicator];
                                                   [KBNAlertUtils showAlertView:ALERT_MESSAGE_INVITE_FAILED andType:ERROR_ALERT];
                                               }];
                                        }
                             errorBlock:^(NSError *error) {
+                                            [weakSelf disableActivityIndicator];
                                        }];
+}
+
+#pragma mark - Activity indicator on/off
+-(void) enableActivityIndicator{
+    self.activityIndicatorBackground.hidden = NO;
+    self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
+}
+
+-(void) disableActivityIndicator{
+    [self.activityIndicator stopAnimating];
+    self.activityIndicator.hidden = YES;
+    self.activityIndicatorBackground.hidden = YES;
 }
 
 #pragma mark - Table View Data Source
