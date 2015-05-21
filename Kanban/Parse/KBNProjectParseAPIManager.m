@@ -52,10 +52,18 @@
     });
 }
 
+
+//- (void) createProject: (KBNProject *) project completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
+//    NSArray* projectUsers = project.users;
+//    NSString* userName = [project.users objectAtIndex:0];
+//    NSDictionary *data = @{PARSE_PROJECT_NAME_COLUMN: project.name, PARSE_PROJECT_DESCRIPTION_COLUMN: project.projectDescription, PARSE_PROJECT_USER_COLUMN: userName,                           PARSE_PROJECT_USERSLIST_COLUMN:projectUsers};
+
 - (void) createProject: (KBNProject *) project completionBlock:(KBNConnectionSuccessProjectBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
-    
-    NSDictionary *data = @{PARSE_PROJECT_NAME_COLUMN: project.name, PARSE_PROJECT_DESCRIPTION_COLUMN: project.projectDescription, PARSE_PROJECT_USER_COLUMN: [project.users objectAtIndex:0], PARSE_PROJECT_ACTIVE_COLUMN: [NSNumber numberWithBool:YES]};
-    
+
+    NSArray* projectUsers = project.users;
+    NSString* userName = [project.users objectAtIndex:0];    
+    NSDictionary *data = @{PARSE_PROJECT_NAME_COLUMN: project.name, PARSE_PROJECT_DESCRIPTION_COLUMN: project.projectDescription, PARSE_PROJECT_USER_COLUMN: [project.users objectAtIndex:0], PARSE_PROJECT_ACTIVE_COLUMN: [NSNumber numberWithBool:YES],PARSE_PROJECT_USERSLIST_COLUMN:projectUsers};
+
     [self.afManager POST:PARSE_PROJECTS parameters: data
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      project.projectId = [responseObject objectForKey:PARSE_OBJECTID];
@@ -84,6 +92,18 @@
                 }];
 }
 
+- (void) editProject: (NSString*)projectID withNewName: (NSString*) newName withNewDesc: (NSString*) newDesc withUsers:(NSArray*)newUsers completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
+    NSDictionary *data = @{PARSE_PROJECT_NAME_COLUMN: newName, PARSE_PROJECT_DESCRIPTION_COLUMN: newDesc,PARSE_PROJECT_USER_COLUMN:newUsers};
+    [self.afManager PUT:[NSString stringWithFormat:@"%@/%@", PARSE_PROJECTS, projectID]
+             parameters:data
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    onCompletion();
+                }
+                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    onError(error);
+                }];
+}
+
 -(void) getProjectWithProjectID: (NSString*)projectID successBlock:(KBNConnectionSuccessArrayBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
     [self.afManager GET: [NSString stringWithFormat:@"%@/%@", PARSE_PROJECTS, projectID]
              parameters:nil
@@ -96,15 +116,40 @@
                 }];
 }
 
+
+
+-(void)setUsersList:(NSArray*)emailAddresses
+        toProjectId:(NSString*)aProjectId
+    completionBlock:(KBNConnectionSuccessBlock)onSuccess
+         errorBlock:(KBNConnectionErrorBlock)onError
+{
+    NSDictionary *data = @{PARSE_PROJECT_USERSLIST_COLUMN: emailAddresses};
+    [self.afManager PUT:[NSString stringWithFormat:@"%@/%@", PARSE_PROJECTS, aProjectId]
+             parameters:data
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    onSuccess();
+                }
+                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    onError(error);
+                }];
+}
+
+
+
+- (void) removeProject: (NSString *)name completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
+    
+}
+
+
 - (KBNProject*) getProjectWithName: (NSString*)name errorBlock:(KBNConnectionErrorBlock)onError{
     return nil;
 }
 
 - (void)getProjectsFromUsername:(NSString*) username onSuccessBlock:(KBNConnectionSuccessDictionaryBlock) onSuccess errorBlock:(KBNConnectionErrorBlock)onError{
     
-    NSMutableDictionary *where = [NSMutableDictionary dictionaryWithCapacity:1];
-    [where setObject:username forKey:PARSE_PROJECT_USER_COLUMN];
-    
+    //NSMutableDictionary *where = [NSMutableDictionary dictionaryWithCapacity:1];
+    //[where setObject:username forKey:PARSE_PROJECT_USER_COLUMN];
+    NSDictionary* where = @{PARSE_PROJECT_USERSLIST_COLUMN:username};
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:2];
     [params setObject:@"-createdAt" forKey:@"order"];
     [params setObject:where forKey:@"where"];
