@@ -35,6 +35,7 @@
 		3A312AAF1AEE8473005837A5 /* KBNUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A312AAD1AEE8473005837A5 /* KBNUserService.m */; };
 		3A312AC41AEE8BEF005837A5 /* KBNTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A312AC31AEE8BEF005837A5 /* KBNTask.m */; };
 		3A312AC71AEE8BEF005837A5 /* KBNTaskList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A312AC61AEE8BEF005837A5 /* KBNTaskList.m */; };
+		3A427E6D1B06630B00348F24 /* UITextView+CustomTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A427E6C1B06630B00348F24 /* UITextView+CustomTextView.m */; };
 		3A4840511AE545CA00C70739 /* KBNAddProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4840461AE545CA00C70739 /* KBNAddProjectViewController.m */; };
 		3A4840521AE545CA00C70739 /* KBNAddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4840481AE545CA00C70739 /* KBNAddTaskViewController.m */; };
 		3A4840531AE545CA00C70739 /* KBNMyProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A48404A1AE545CA00C70739 /* KBNMyProjectsViewController.m */; };
@@ -44,6 +45,7 @@
 		3A6B09631B0244E200C75EF3 /* KBNEditProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6B09621B0244E200C75EF3 /* KBNEditProjectViewController.m */; };
 		3A9509A21AF7C5AD00849FF0 /* KBNProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9509A11AF7C5AD00849FF0 /* KBNProject.m */; };
 		3A9509A61AF908CC00849FF0 /* KBNMoveTaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9509A51AF908CC00849FF0 /* KBNMoveTaskTest.m */; };
+		3AA0C9751B0B601000030630 /* KBNRemoveProjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0C9741B0B601000030630 /* KBNRemoveProjectTest.m */; };
 		541A5EB61AF144FC00C571CC /* KBNEditProjectTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 541A5EB51AF144FC00C571CC /* KBNEditProjectTest.m */; };
 		543FFAF71AFBD23C0020AD28 /* KBNInitialSetupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 543FFAF61AFBD23C0020AD28 /* KBNInitialSetupTest.m */; };
 		54505C531AFD3BA3000A30B8 /* KBNUpdateManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54505C521AFD3BA3000A30B8 /* KBNUpdateManagerTest.m */; };
@@ -136,6 +138,8 @@
 		3A312AC31AEE8BEF005837A5 /* KBNTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNTask.m; path = Domain/KBNTask.m; sourceTree = "<group>"; };
 		3A312AC51AEE8BEF005837A5 /* KBNTaskList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNTaskList.h; path = Domain/KBNTaskList.h; sourceTree = "<group>"; };
 		3A312AC61AEE8BEF005837A5 /* KBNTaskList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNTaskList.m; path = Domain/KBNTaskList.m; sourceTree = "<group>"; };
+		3A427E6B1B06630B00348F24 /* UITextView+CustomTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextView+CustomTextView.h"; path = "Utils/UITextView+CustomTextView.h"; sourceTree = "<group>"; };
+		3A427E6C1B06630B00348F24 /* UITextView+CustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextView+CustomTextView.m"; path = "Utils/UITextView+CustomTextView.m"; sourceTree = "<group>"; };
 		3A4840451AE545CA00C70739 /* KBNAddProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNAddProjectViewController.h; path = Controllers/KBNAddProjectViewController.h; sourceTree = "<group>"; };
 		3A4840461AE545CA00C70739 /* KBNAddProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNAddProjectViewController.m; path = Controllers/KBNAddProjectViewController.m; sourceTree = "<group>"; };
 		3A4840471AE545CA00C70739 /* KBNAddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNAddTaskViewController.h; path = Controllers/KBNAddTaskViewController.h; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 		3A9509A01AF7C5AD00849FF0 /* KBNProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNProject.h; path = Domain/KBNProject.h; sourceTree = "<group>"; };
 		3A9509A11AF7C5AD00849FF0 /* KBNProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNProject.m; path = Domain/KBNProject.m; sourceTree = "<group>"; };
 		3A9509A51AF908CC00849FF0 /* KBNMoveTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNMoveTaskTest.m; sourceTree = "<group>"; };
+		3AA0C9741B0B601000030630 /* KBNRemoveProjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNRemoveProjectTest.m; sourceTree = "<group>"; };
 		541A5EB51AF144FC00C571CC /* KBNEditProjectTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNEditProjectTest.m; sourceTree = "<group>"; };
 		543FFAF51AFBD23C0020AD28 /* KBNInitialSetupTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBNInitialSetupTest.h; sourceTree = "<group>"; };
 		543FFAF61AFBD23C0020AD28 /* KBNInitialSetupTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNInitialSetupTest.m; sourceTree = "<group>"; };
@@ -308,20 +313,20 @@
 		3A4840261AE5435E00C70739 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3A6B09611B0244E200C75EF3 /* KBNEditProjectViewController.h */,
-				3A6B09621B0244E200C75EF3 /* KBNEditProjectViewController.m */,
-				3A312A9E1AEE8420005837A5 /* KBNSignInViewController.h */,
-				3A312A9F1AEE8420005837A5 /* KBNSignInViewController.m */,
 				3A4840451AE545CA00C70739 /* KBNAddProjectViewController.h */,
 				3A4840461AE545CA00C70739 /* KBNAddProjectViewController.m */,
 				3A4840471AE545CA00C70739 /* KBNAddTaskViewController.h */,
 				3A4840481AE545CA00C70739 /* KBNAddTaskViewController.m */,
+				3A6B09611B0244E200C75EF3 /* KBNEditProjectViewController.h */,
+				3A6B09621B0244E200C75EF3 /* KBNEditProjectViewController.m */,
 				3A4840491AE545CA00C70739 /* KBNMyProjectsViewController.h */,
 				3A48404A1AE545CA00C70739 /* KBNMyProjectsViewController.m */,
 				3A48404B1AE545CA00C70739 /* KBNProjectDetailViewController.h */,
 				3A48404C1AE545CA00C70739 /* KBNProjectDetailViewController.m */,
 				3A48404D1AE545CA00C70739 /* KBNProjectPageViewController.h */,
 				3A48404E1AE545CA00C70739 /* KBNProjectPageViewController.m */,
+				3A312A9E1AEE8420005837A5 /* KBNSignInViewController.h */,
+				3A312A9F1AEE8420005837A5 /* KBNSignInViewController.m */,
 				3A48404F1AE545CA00C70739 /* KBNTaskDetailViewController.h */,
 				3A4840501AE545CA00C70739 /* KBNTaskDetailViewController.m */,
 			);
@@ -389,6 +394,7 @@
 				18BE0FAC1AEE755500B2B0C2 /* KBNLoginTest.m */,
 				18368D331AF2647F006557C6 /* KBNRemoveTaskTest.m */,
 				54505C521AFD3BA3000A30B8 /* KBNUpdateManagerTest.m */,
+				3AA0C9741B0B601000030630 /* KBNRemoveProjectTest.m */,
 				CCA1A2781ADEA3D900CC98B5 /* Supporting Files */,
 				543FFAF51AFBD23C0020AD28 /* KBNInitialSetupTest.h */,
 				543FFAF61AFBD23C0020AD28 /* KBNInitialSetupTest.m */,
@@ -427,10 +433,15 @@
 				032EF2911AF0259400F27846 /* KBNErrorUtils.m */,
 				187EC9AC1AFD23DB0028E9FE /* KBNUpdateUtils.h */,
 				187EC9AD1AFD23DB0028E9FE /* KBNUpdateUtils.m */,
+<<<<<<< HEAD
 				A07974BF1AFD3B1B0030696F /* KBNEmailUtils.h */,
 				A07974C01AFD3B1B0030696F /* KBNEmailUtils.m */,
 				A07974C21B013E890030696F /* KBNArrayToDataTransformer.h */,
 				A07974C31B013E890030696F /* KBNArrayToDataTransformer.m */,
+=======
+				3A427E6B1B06630B00348F24 /* UITextView+CustomTextView.h */,
+				3A427E6C1B06630B00348F24 /* UITextView+CustomTextView.m */,
+>>>>>>> master
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -633,6 +644,7 @@
 				3A312AAE1AEE8473005837A5 /* KBNProjectService.m in Sources */,
 				032EF2921AF0259400F27846 /* KBNErrorUtils.m in Sources */,
 				E2AC8A341AF902D9008A44B5 /* NSDate+Utils.m in Sources */,
+				3A427E6D1B06630B00348F24 /* UITextView+CustomTextView.m in Sources */,
 				18CB2DBD1AEAE40700F5F390 /* (null) in Sources */,
 				3A0CCD2C1AEFC1270039F629 /* KBNTaskListUtils.m in Sources */,
 				E2AC8A371AF90312008A44B5 /* KBNUpdateManager.m in Sources */,
@@ -676,6 +688,7 @@
 				541A5EB61AF144FC00C571CC /* KBNEditProjectTest.m in Sources */,
 				A079744C1AF023810030696F /* KBNCreateTaskTests.m in Sources */,
 				54505C531AFD3BA3000A30B8 /* KBNUpdateManagerTest.m in Sources */,
+				3AA0C9751B0B601000030630 /* KBNRemoveProjectTest.m in Sources */,
 				CCA1A27B1ADEA3D900CC98B5 /* KBNCreateProjectTests.m in Sources */,
 				18D88D3F1AEEC4BB00D9BDE1 /* KBNGetProjectsTest.m in Sources */,
 				18368D341AF2647F006557C6 /* KBNRemoveTaskTest.m in Sources */,

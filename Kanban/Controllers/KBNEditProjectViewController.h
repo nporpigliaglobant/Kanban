@@ -19,5 +19,5 @@
 @interface KBNEditProjectViewController : UIViewController<UIAlertViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property KBNProject* project;
-@property NSString* projectId;
+
 @end

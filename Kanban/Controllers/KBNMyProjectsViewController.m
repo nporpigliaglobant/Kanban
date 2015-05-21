@@ -16,11 +16,15 @@
 #define TABLEVIEW_PROJECT_CELL @"ProjectCell"
 #define SEGUE_PROJECT_DETAIL @"projectDetail"
 #define SEGUE_ADD_PROJECT @"addProject"
+#define DELETE_WARNING_MESSAGE @"The selected project will be deleted"
+
+#define PROJECT_ROW_HEIGHT 80
 
 @interface KBNMyProjectsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *projects;
+@property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -34,6 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.projects=[NSMutableArray new];
     [self listenUpdateManager];
 }
@@ -70,8 +75,8 @@
 
 #pragma mark - Private methods
 
-- (void)getProjects:(NSNotification *)noti {
-    [KBNUpdateUtils updateExistingProjectsFromArray:(NSArray*)noti.object inArray:self.projects];
+- (void)getProjects:(NSNotification *)notification {
+    [KBNUpdateUtils updateExistingProjectsFromArray:(NSArray*)notification.object inArray:self.projects];
     
     __weak typeof(self) weakself = self;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -95,8 +100,8 @@
     KBNProject *project = [self.projects objectAtIndex:indexPath.row];
     
     cell.textLabel.text = project.name;
-    cell.textLabel.font = [UIFont getTableFont];
-    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.layer.shadowOffset = CGSizeMake(-1, 1);
+    cell.layer.shadowOpacity = 0.5;
     
     return cell;
 }
@@ -105,6 +110,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        self.selectedIndexPath = indexPath;
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:DELETE_WARNING_MESSAGE
+                                                       delegate:self
+                                              cancelButtonTitle:CANCEL_TITLE
+                                              otherButtonTitles:DELETE_TITLE, nil];
+        [alert show];
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return PROJECT_ROW_HEIGHT;
 }
 
 #pragma mark - Navigation
@@ -116,6 +139,8 @@
     
     if ([segue.identifier isEqualToString:SEGUE_PROJECT_DETAIL]) {
         KBNProjectPageViewController *controller = [segue destinationViewController];
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         controller.project = [self.projects objectAtIndex:indexPath.row];
     }
@@ -123,7 +148,54 @@
         UINavigationController *navController = [segue destinationViewController];
         KBNAddProjectViewController *controller   = (KBNAddProjectViewController*) navController.topViewController;
         controller.projectService = [KBNProjectService sharedInstance];
+        controller.delegate = self;
     }
+}
+
+#pragma mark - KBNAddProject Delegate
+-(void) didCreateProject:(KBNProject *)project{
+    [self.projects addObject:project];
+    [KBNUpdateManager sharedInstance].lastProjectsUpdate = [NSDate getUTCNowWithParseFormat];
+    [self.tableView reloadData];
+}
+
+#pragma mark - Alert View Delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex) {
+        [self removeProject];
+    } else {
+        [self.tableView setEditing:NO];
+    }
+}
+#pragma mark - Helper methods
+
+- (void)removeProject {
+    
+    NSUInteger index = self.selectedIndexPath.row;
+    
+    KBNProject *projectToDelete = [self.projects objectAtIndex:index];
+    
+    //First remove it from data source
+    [self.projects removeObjectAtIndex:index];
+    
+    //Animate deletion
+    [self.tableView deleteRowsAtIndexPaths:@[self.selectedIndexPath] withRowAnimation:YES];
+    
+    // Then ask the service to remove it from the storage
+    [[KBNProjectService sharedInstance] removeProject:projectToDelete
+                                      completionBlock:^{
+                                          // Project removed
+                                      } errorBlock:^(NSError *error) {
+                                          // Re-insert project at its original position
+                                          __weak typeof(self) weakself = self;
+                                          [weakself.projects insertObject:projectToDelete atIndex:index];
+                                          [weakself.tableView insertRowsAtIndexPaths:@[weakself.selectedIndexPath] withRowAnimation:YES];
+                                          
+                                          [KBNAlertUtils showAlertView:[error localizedDescription] andType:ERROR_ALERT];
+                                      }];
+    
 }
 
 @end

@@ -15,13 +15,16 @@
 #define TABLEVIEW_TASK_CELL @"TaskCell"
 #define SEGUE_TASK_DETAIL @"taskDetail"
 #define SEGUE_ADD_TASK @"addTask"
+#define SEGUE_EDIT_PROJECT @"editProject"
 #define TASK_SWIPE_THRESHOLD 50
-#define REGULAR_TITLE @"Delete Tasks"
+#define REGULAR_TITLE @"Delete"
 #define EDITING_TITLE @"Done"
+
+#define TASK_ROW_HEIGHT 80
 
 @interface KBNProjectDetailViewController () <UIGestureRecognizerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (strong, nonatomic) IBOutlet UILongPressGestureRecognizer *longPress;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *doubleTap;
@@ -37,18 +40,31 @@
     
     self.title = self.project.name;
     self.labelState.text = self.taskList.name;
-    [self.editButton setTitle:REGULAR_TITLE forState:UIControlStateNormal];
-    [self.editButton sizeToFit];
+    [self.deleteButton setTitle:REGULAR_TITLE forState:UIControlStateNormal];
+    [self.deleteButton sizeToFit];
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     [self.tap requireGestureRecognizerToFail:self.doubleTap];
     self.tap.delegate = self;
     self.doubleTap.delegate=self;
     self.longPress.delegate = self;
+    
+    [self.view setBackgroundColor:UIColorFromRGB(LIGHT_GRAY)];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
     [self.tableView reloadData];
+    
+    if (!self.taskListTasks.count) {
+        [self.deleteButton setHidden:YES];
+        [self.deleteButton setEnabled:NO];
+    } else {
+        [self.deleteButton setHidden:NO];
+        [self.deleteButton setEnabled:YES];
+    }
+
+    self.title = self.project.name;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +88,8 @@
     
     KBNTask* task = [self.taskListTasks objectAtIndex:indexPath.row];
     cell.textLabel.text = task.name;
+    cell.layer.shadowOffset = CGSizeMake(-1, 1);
+    cell.layer.shadowOpacity = 0.5;
     
     return cell;
     
@@ -92,13 +110,13 @@
         // If the tableView is already in edit mode, turn it off. Also change the title of the button to reflect the intended verb (‘Edit’, in this case).
         [self.tableView setEditing:NO animated:YES];
         
-        [self.editButton setTitle:REGULAR_TITLE forState:UIControlStateNormal];
-        [self.editButton sizeToFit];
+        [self.deleteButton setTitle:REGULAR_TITLE forState:UIControlStateNormal];
+        [self.deleteButton sizeToFit];
         
     }
     else {
-        [self.editButton setTitle:EDITING_TITLE forState:UIControlStateNormal];
-        [self.editButton sizeToFit];
+        [self.deleteButton setTitle:EDITING_TITLE forState:UIControlStateNormal];
+        [self.deleteButton sizeToFit];
         
         // Turn on edit mode
         [self.tableView setEditing:YES animated:YES];
@@ -132,12 +150,17 @@
         // Additional code to configure the Edit Button, if any
         if (self.taskListTasks.count == 0) {
             [self.tableView setEditing:NO animated:YES];
-            [self.editButton setTitle:REGULAR_TITLE forState:UIControlStateNormal];
-            [self.editButton sizeToFit];
+            [self.deleteButton setTitle:REGULAR_TITLE forState:UIControlStateNormal];
+            [self.deleteButton sizeToFit];
         }
     }
     
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return TASK_ROW_HEIGHT;
+}
+
 
 #pragma mark - Gestures Handlers
 
@@ -381,6 +404,7 @@
     
     if ([[segue identifier] isEqualToString:SEGUE_TASK_DETAIL]) {
         KBNTaskDetailViewController *taskDetailViewController = [segue destinationViewController];
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         
         NSIndexPath *indexPath = [self indexPathForSender:sender];
         taskDetailViewController.task = [self.taskListTasks objectAtIndex:indexPath.row];

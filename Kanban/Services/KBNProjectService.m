@@ -29,7 +29,7 @@
 }
 
 
--(void)createProject:(NSString*)name withDescription:(NSString*)projectDescription forUser:(NSString*) username completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
+-(void)createProject:(NSString*)name withDescription:(NSString*)projectDescription forUser:(NSString*) username completionBlock:(KBNConnectionSuccessProjectBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
     if ([name isEqualToString:@""] || !name) {
         NSString *domain = ERROR_DOMAIN;
         NSDictionary * info = @{@"NSLocalizedDescriptionKey": CREATING_PROJECT_WITHOUTNAME_ERROR};
@@ -40,8 +40,16 @@
         KBNProject *project = [[KBNProject alloc]initWithEntity:[NSEntityDescription entityForName:ENTITY_PROJECT inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
         project.name = name;
         project.projectDescription = projectDescription;
+
         project.users = [NSArray arrayWithObject:username];
-        [self.dataService createProject:project completionBlock:onCompletion errorBlock:onError ] ;
+        //[self.dataService createProject:project completionBlock:onCompletion errorBlock:onError ] ;
+
+        //project.users = [NSMutableArray new];
+        //[project.users addObject:username];
+        
+        [self.dataService createProject:project completionBlock:^(KBNProject *newProject) {
+            onCompletion(newProject);
+        } errorBlock:onError];
     }
 }
 
@@ -56,6 +64,7 @@
         [self.dataService editProject:projectID withNewName:newName withNewDesc:newDescription completionBlock:onCompletion errorBlock:onError];
     }
 }
+
 
 
 -(BOOL)project:(KBNProject*)project hasUser:(NSString*)emailAddress{
@@ -102,8 +111,11 @@
     }
 }
 
--(void)removeProject:(NSString*)name completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
+
+-(void)removeProject:(KBNProject*)project completionBlock:(KBNConnectionSuccessBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
     
+    project.active = @NO;
+    [self.dataService updateProjects:@[project] completionBlock:onCompletion errorBlock:onError];
     
 }
 
@@ -127,19 +139,25 @@
             newProject.name = [item objectForKey:PARSE_PROJECT_NAME_COLUMN];
             newProject.projectDescription = [item objectForKey:PARSE_PROJECT_DESCRIPTION_COLUMN];
             newProject.projectId = [item objectForKey:PARSE_OBJECTID];
+
             NSMutableArray* tempUsersList = [[NSMutableArray alloc] init];
             for (NSString* usersListItem in [item objectForKey:PARSE_PROJECT_USERSLIST_COLUMN]) {
                 [tempUsersList addObject:usersListItem];
             }
             newProject.users = [NSArray arrayWithArray:tempUsersList];
             [projectsArray addObject:newProject];
+            newProject.active = [item objectForKey:PARSE_TASK_ACTIVE_COLUMN];            
+            if ([newProject isActive]) {
+                [projectsArray addObject:newProject];
+            }
+
         }
         onCompletion(projectsArray);
     } errorBlock:onError];
 }
 
 -(void)getProjectsForUser: (NSString*) username updatedAfter:(NSString*) lastUpdate  onSuccessBlock:(KBNConnectionSuccessArrayBlock)onCompletion errorBlock:(KBNConnectionErrorBlock)onError{
-
+    
     __weak typeof(self) weakself = self;
     
     [self.dataService getProjectsFromUsername:username updatedAfter:lastUpdate onSuccessBlock:^(NSDictionary *records) {
@@ -154,14 +172,18 @@
             newProject.name = [item objectForKey:PARSE_PROJECT_NAME_COLUMN];
             newProject.projectDescription = [item objectForKey:PARSE_PROJECT_DESCRIPTION_COLUMN];
             newProject.projectId = [item objectForKey:PARSE_OBJECTID];
+            newProject.active = [item objectForKey:PARSE_TASK_ACTIVE_COLUMN];
             newProject.users = [NSMutableArray new];
             [newProject.users addObject:[item objectForKey:PARSE_PROJECT_USER_COLUMN]];
-            [projectsArray addObject:newProject];
+            
+            if ([newProject isActive]) {
+                [projectsArray addObject:newProject];
+            }
         }
         onCompletion(projectsArray);
     } errorBlock:onError];
-
-
+    
+    
 }
 
 @end

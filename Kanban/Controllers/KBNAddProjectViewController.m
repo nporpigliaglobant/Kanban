@@ -7,19 +7,25 @@
 //
 
 #import "KBNAddProjectViewController.h"
+#import "UITextView+CustomTextView.h"
 
 @interface KBNAddProjectViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 
 @end
 
 @implementation KBNAddProjectViewController
 
+@synthesize delegate;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:UIColorFromRGB(LIGHT_GRAY)];
+    [self.descriptionTextView setBorderWithColor:[UIColorFromRGB(BORDER_GRAY) CGColor]];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,31 +47,23 @@
 
 - (IBAction)save:(UIBarButtonItem *)sender {
     [KBNAppDelegate activateActivityIndicator:YES];
-    [self.projectService createProject:self.nameTextField.text withDescription:self.descriptionTextField.text forUser:[KBNUserUtils getUsername] completionBlock:^{
+    __weak typeof(self) weakself = self;
+    [self.projectService createProject:self.nameTextField.text withDescription:self.descriptionTextView.text forUser:[KBNUserUtils getUsername] completionBlock:^(KBNProject *project) {
         [KBNAppDelegate activateActivityIndicator:NO];
         [KBNAlertUtils showAlertView:PROJECT_CREATION_SUCCESS andType:SUCCESS_ALERT];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        [weakself.delegate didCreateProject:project];
+        [weakself dismissViewControllerAnimated:YES completion:nil];
+        
     } errorBlock:^(NSError *error) {
         [KBNAppDelegate activateActivityIndicator:NO];
         [KBNAlertUtils showAlertView:[error localizedDescription ]andType:ERROR_ALERT ];
+        [weakself dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 
 - (IBAction)cancel:(UIBarButtonItem *)sender {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end
