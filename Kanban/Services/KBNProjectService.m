@@ -71,7 +71,7 @@
                 project.projectId = [projectParams objectForKey:@"projectId"];
                 project.updatedAt = [projectParams objectForKey:@"updatedAt"];
                 project.synchronized = [NSNumber numberWithBool:YES];
-                
+                [project setUpdatedInParse:[NSNumber numberWithBool:true]];
                 NSArray *listsParams = [records objectForKey:@"taskLists"];
                 KBNTaskList *taskList = nil;
                 NSUInteger index = 0;
@@ -235,6 +235,7 @@
         // Mark projects as synchronized and save context.
         for (KBNProject *project in results) {
             project.synchronized = [NSNumber numberWithBool:YES];
+            project.updatedInParse = [NSNumber numberWithBool:YES];
         }
         [[KBNCoreDataManager sharedInstance] saveContext];
     } errorBlock:^(NSError *error) {
@@ -285,6 +286,7 @@
                     if (error) {
                         NSLog(@"KBNProjectService syncProjectsOnParse] Error = %@", error);
                     }
+                    [project.managedObjectContext refreshObject:project mergeChanges:YES];
                 } errorBlock:^(NSError *error) {
                     NSLog(@"Could not create project on syncProjectsOnParse");
                 }];
