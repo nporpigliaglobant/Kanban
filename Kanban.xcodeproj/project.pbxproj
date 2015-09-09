@@ -65,6 +65,9 @@
 		543FFAF71AFBD23C0020AD28 /* KBNInitialSetupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 543FFAF61AFBD23C0020AD28 /* KBNInitialSetupTest.m */; };
 		54505C531AFD3BA3000A30B8 /* KBNUpdateManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54505C521AFD3BA3000A30B8 /* KBNUpdateManagerTest.m */; };
 		846FA57D1AE6F0B900AB91C1 /* libPods-AFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 846FA57C1AE6F0B900AB91C1 /* libPods-AFNetworking.a */; };
+		94CCBBB61B6AB0C9004AFB83 /* KBNTaskPriorityPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CCBBB51B6AB0C9004AFB83 /* KBNTaskPriorityPickerView.m */; };
+		94D1673E1B9DB738000844A2 /* KBNProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D1673D1B9DB738000844A2 /* KBNProjectTableViewCell.m */; };
+		94D167431B9DC2A8000844A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94D167451B9DC2A8000844A2 /* Localizable.strings */; };
 		A07653481B0E209C009A8550 /* KBNEmailUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A07653471B0E209C009A8550 /* KBNEmailUtils.m */; };
 		A076534B1B0E2204009A8550 /* KBNArrayToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = A076534A1B0E2204009A8550 /* KBNArrayToDataTransformer.m */; };
 		A079744C1AF023810030696F /* KBNCreateTaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A079744B1AF023810030696F /* KBNCreateTaskTests.m */; };
@@ -204,6 +207,11 @@
 		543FFAF61AFBD23C0020AD28 /* KBNInitialSetupTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNInitialSetupTest.m; sourceTree = "<group>"; };
 		54505C521AFD3BA3000A30B8 /* KBNUpdateManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBNUpdateManagerTest.m; sourceTree = "<group>"; };
 		846FA57C1AE6F0B900AB91C1 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/../build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
+		94CCBBB41B6AB0C9004AFB83 /* KBNTaskPriorityPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNTaskPriorityPickerView.h; path = Controllers/Task/KBNTaskPriorityPickerView.h; sourceTree = "<group>"; };
+		94CCBBB51B6AB0C9004AFB83 /* KBNTaskPriorityPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNTaskPriorityPickerView.m; path = Controllers/Task/KBNTaskPriorityPickerView.m; sourceTree = "<group>"; };
+		94D1673D1B9DB738000844A2 /* KBNProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNProjectTableViewCell.m; path = Controllers/Project/KBNProjectTableViewCell.m; sourceTree = "<group>"; };
+		94D1673F1B9DB790000844A2 /* KBNProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNProjectTableViewCell.h; path = Controllers/Project/KBNProjectTableViewCell.h; sourceTree = "<group>"; };
+		94D167441B9DC2A8000844A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A07653461B0E209C009A8550 /* KBNEmailUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNEmailUtils.h; path = Utils/KBNEmailUtils.h; sourceTree = "<group>"; };
 		A07653471B0E209C009A8550 /* KBNEmailUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KBNEmailUtils.m; path = Utils/KBNEmailUtils.m; sourceTree = "<group>"; };
 		A07653491B0E2204009A8550 /* KBNArrayToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KBNArrayToDataTransformer.h; path = Utils/KBNArrayToDataTransformer.h; sourceTree = "<group>"; };
@@ -383,6 +391,8 @@
 				3A2D11F91B3349AE009EB7A3 /* KBNAddTaskViewController.m */,
 				3A2D11FA1B3349AE009EB7A3 /* KBNTaskDetailViewController.h */,
 				3A2D11FB1B3349AE009EB7A3 /* KBNTaskDetailViewController.m */,
+				94CCBBB41B6AB0C9004AFB83 /* KBNTaskPriorityPickerView.h */,
+				94CCBBB51B6AB0C9004AFB83 /* KBNTaskPriorityPickerView.m */,
 			);
 			name = Task;
 			sourceTree = "<group>";
@@ -390,6 +400,8 @@
 		3A2D11EE1B334973009EB7A3 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				94D1673F1B9DB790000844A2 /* KBNProjectTableViewCell.h */,
+				94D1673D1B9DB738000844A2 /* KBNProjectTableViewCell.m */,
 				3A2D11EF1B334995009EB7A3 /* KBNAddProjectViewController.h */,
 				3A2D11F01B334995009EB7A3 /* KBNAddProjectViewController.m */,
 				3A2D11F11B334995009EB7A3 /* KBNEditProjectViewController.h */,
@@ -567,6 +579,7 @@
 				A076534A1B0E2204009A8550 /* KBNArrayToDataTransformer.m */,
 				3AE7FBD11B1658030037809A /* KBNProjectTemplateUtils.h */,
 				3AE7FBD21B1658030037809A /* KBNProjectTemplateUtils.m */,
+				94D167451B9DC2A8000844A2 /* Localizable.strings */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -680,6 +693,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A69EE961B20BB35005CDB6D /* KBNReachabilityWidgetView.xib in Resources */,
+				94D167431B9DC2A8000844A2 /* Localizable.strings in Resources */,
 				3A312A9D1AEE8408005837A5 /* Signin.storyboard in Resources */,
 				3A312A9C1AEE8408005837A5 /* Main.storyboard in Resources */,
 				CCA1A26F1ADEA3D900CC98B5 /* LaunchScreen.xib in Resources */,
@@ -791,6 +805,7 @@
 				E228B8421AEFD65D00753750 /* (null) in Sources */,
 				3A69EE941B20BB35005CDB6D /* KBNCustomViewFromXib.m in Sources */,
 				187EC9AE1AFD23DB0028E9FE /* KBNUpdateUtils.m in Sources */,
+				94D1673E1B9DB738000844A2 /* KBNProjectTableViewCell.m in Sources */,
 				3A312AA81AEE845E005837A5 /* KBNProjectParseAPIManager.m in Sources */,
 				3A0CCD371AEFC1780039F629 /* KBNProjectUtils.m in Sources */,
 				3A9509A21AF7C5AD00849FF0 /* KBNProject.m in Sources */,
@@ -804,6 +819,7 @@
 				3A4840551AE545CA00C70739 /* KBNProjectPageViewController.m in Sources */,
 				3AF8F0D51B152B9F0092A6BD /* KBNProjectTemplate.m in Sources */,
 				3A4840531AE545CA00C70739 /* KBNMyProjectsViewController.m in Sources */,
+				94CCBBB61B6AB0C9004AFB83 /* KBNTaskPriorityPickerView.m in Sources */,
 				3A312AA91AEE845E005837A5 /* KBNUserParseAPIManager.m in Sources */,
 				3A312AC41AEE8BEF005837A5 /* KBNTask.m in Sources */,
 				A0C8A7031AEED4640069E236 /* KBNTaskListService.m in Sources */,
@@ -849,6 +865,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		94D167451B9DC2A8000844A2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94D167441B9DC2A8000844A2 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		CCA1A26D1ADEA3D900CC98B5 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
