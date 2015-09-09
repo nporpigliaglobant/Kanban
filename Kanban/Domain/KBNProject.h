@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSOrderedSet *tasks;
 @property (nonatomic, strong) NSNumber *synchronized;
 @property (nonatomic, strong) NSDate *updatedAt;
+@property (nonatomic, strong) NSNumber *updatedInParse;
 
 @end
 
@@ -52,5 +53,6 @@
 - (BOOL)isShared;
 - (BOOL)isSynchronized;
 - (KBNTaskList*)taskListForId:(NSString*)taskListId;
++ (void)initWithEntity;
 
 @end

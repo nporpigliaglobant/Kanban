@@ -27,6 +27,11 @@
     return inst;
 }
 
+-(instancetype)init {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(syncTasksOnParse) name:CONNECTION_ONLINE object:nil];
+    return self;
+}
+
 - (void)createTask:(KBNTask*)aTask
             inList:(KBNTaskList*)aTaskList
    completionBlock:(KBNSuccessTaskBlock)onCompletion
@@ -52,7 +57,7 @@
                 aTask.project.projectId && aTask.taskList.taskListId) {
                 
                 __weak typeof(self) weakself = self;
-                [self.dataService createTaskWithName:aTask.name taskDescription:aTask.taskDescription order:aTask.order projectId:aTaskList.project.projectId taskListId:aTaskList.taskListId completionBlock:^(NSDictionary *params) {
+                [self.dataService createTaskWithName:aTask.name taskDescription:aTask.taskDescription order:aTask.order projectId:aTaskList.project.projectId taskListId:aTaskList.taskListId priority:aTask.priority completionBlock:^(NSDictionary *params) {
                     aTask.taskId = [params objectForKey:@"taskId"];
                     aTask.updatedAt = [params objectForKey:@"updatedAt"];
                     aTask.synchronized = [NSNumber numberWithBool:YES];
@@ -117,8 +122,7 @@
     } errorBlock:onError];
 }
 
-- (void) moveTask:(KBNTask *)task toList:(KBNTaskList*)destinationList inOrder:(NSNumber*)order
-  completionBlock:(KBNSuccessBlock)onCompletion errorBlock:(KBNErrorBlock)onError {
+- (void) moveTask:(KBNTask *)task toList:(KBNTaskList*)destinationList inOrder:(NSNumber*)order completionBlock:(KBNSuccessBlock)onCompletion errorBlock:(KBNErrorBlock)onError {
 
     NSMutableArray *tasksToUpdate = [[NSMutableArray alloc] init];
     
@@ -176,6 +180,22 @@
         if ([project isShared]) {
             [KBNUpdateUtils postToFirebase:weakself.fireBaseRootReference changeType:KBNChangeTypeTasksUpdate projectId:project.projectId data:[KBNTaskUtils tasksJson:tasks]];
         }
+        if ([tasks count] == [records count]) {
+            NSUInteger i = 0;
+            for (NSDictionary *record in records) {
+                NSDictionary *success = [record objectForKey:@"success"];
+                KBNTask *task = [tasks objectAtIndex:i];
+                task.taskId = [success objectForKey:PARSE_OBJECTID];
+                NSDate *createdAt = [NSDate dateFromParseString:[success objectForKey:PARSE_CREATED_COLUMN]];
+                task.updatedAt = createdAt;
+                NSError *error = nil;
+                [task.managedObjectContext save:&error];
+                if (error != nil) {
+                    onError(error);
+                }
+                i++;
+            }
+        }
         onCompletion(tasks);
     } errorBlock:onError ];
 }
@@ -202,6 +222,50 @@
 
 - (void)tasksForProject:(KBNProject *)project completionBlock:(KBNSuccessArrayBlock)onCompletion errorBlock:(KBNErrorBlock)onError {
     [[KBNCoreDataManager sharedInstance] tasksForProjectId:project.projectId completionBlock:onCompletion errorBlock:onError];
+}
+
+-(void)syncTasksOnParse {
+    [[KBNCoreDataManager sharedInstance] getUnUpdatedTasksOnSuccess:^(NSArray *records) {
+        for (KBNTask *task in records) {
+            if(task.isSynchronized) {
+                __weak typeof(self) weakself = self;
+                [self.dataService updateTasks:@[task]
+                              completionBlock:^(NSDictionary *records) {
+                                  if ([task.project isShared]) {
+                                      [KBNUpdateUtils postToFirebase:weakself.fireBaseRootReference changeType:KBNChangeTypeTaskUpdate projectId:task.project.projectId data:[KBNTaskUtils tasksJson:@[task]]];
+                                  }
+                              }
+                                   errorBlock:^(NSError *error) {
+                                       NSLog(@"[KBNTaskService syncTasksOnParse] - Error: Could not update task",nil);
+                                   }];
+            }
+            else {
+                if (task.project.isSynchronized && task.taskList.isSynchronized) {
+                    __weak typeof(self) weakself = self;
+                    [self.dataService createTaskWithName:task.name taskDescription:task.taskDescription order:task.order projectId:task.project.projectId taskListId:task.taskList.taskListId priority:task.priority completionBlock:^(NSDictionary *params) {
+                        task.taskId = [params objectForKey:@"taskId"];
+                        task.updatedAt = [params objectForKey:@"updatedAt"];
+                        task.synchronized = [NSNumber numberWithBool:YES];
+                        
+                       
+                        NSError *error = nil;
+                        [task.managedObjectContext save:&error];
+                        if (error) {
+                            NSLog(@"[KBNTaskService syncTasksOnParse] - Error: %@", error);
+                        }
+                        
+                        if ([task.project isShared]) {
+                            [KBNUpdateUtils postToFirebase:weakself.fireBaseRootReference changeType:KBNChangeTypeTaskAdd projectId:task.project.projectId data:[KBNTaskUtils tasksJson:@[task]]];
+                        }
+                    } errorBlock:^(NSError *error) {
+                        NSLog(@"[KBNTaskService syncTasksOnParse] - Error: Could not create task");
+                    }];
+                }
+            }
+        }
+    } errorBlock:^(NSError *error) {
+        NSLog(@"Error Recovering Projects from coredata");
+    }];
 }
 
 @end
