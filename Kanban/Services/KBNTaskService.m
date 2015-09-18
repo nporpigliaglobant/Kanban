@@ -38,6 +38,7 @@
         errorBlock:(KBNErrorBlock)onError {
     
     if ([aTask.name isEqualToString:@""] || !aTask.name) {
+        [[[KBNCoreDataManager sharedInstance] managedObjectContext] deleteObject:aTask];
         NSString *domain = ERROR_DOMAIN;
         NSDictionary * info = @{NSLocalizedDescriptionKey: CREATING_TASK_WITHOUT_NAME_ERROR};
         NSError *errorPtr = [NSError errorWithDomain:domain code:-104 userInfo:info];
