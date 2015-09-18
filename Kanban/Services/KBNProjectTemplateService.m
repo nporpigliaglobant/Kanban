@@ -24,9 +24,9 @@
     return inst;
 }
 
-- (void)getTemplatesCompletionBlock:(KBNSuccessArrayBlock)onCompletion errorBlock:(KBNErrorBlock)onError {
+- (void)getTemplatesCompletionBlock:(KBNSuccessArrayBlock)onCompletion language: (NSString *) language errorBlock:(KBNErrorBlock)onError {
     
-    [self.dataService getTemplatesCompletionBlock:^(NSArray *records) {
+    [self.dataService getTemplatesCompletionBlock:^(NSArray *records){
         
         NSMutableArray *templatesArray = [[NSMutableArray alloc] init];
                                           
@@ -36,7 +36,7 @@
         }
         onCompletion(templatesArray);
         
-    } errorBlock:onError];
+    } language:language errorBlock:onError];
 }
 
 @end
